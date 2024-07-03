@@ -6,7 +6,7 @@ export const Route = createFileRoute('/')({
 
 function IndexComponent() {
   return (
-    <div className={`p-2`}>
+    <div className="min-h-screen flex flex-col items-center justify-center h-2">
      index component
     </div>
   )

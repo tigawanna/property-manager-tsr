@@ -1,13 +1,33 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider, ErrorComponent, createRouter } from "@tanstack/react-router";
-import { auth } from "./utils/auth";
 import { Spinner } from "./components/Spinner";
 import { routeTree } from "./routeTree.gen";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MutationCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { pb } from "./lib/pb/client";
+import "./styles.css"
 
 
-
-export const queryClient = new QueryClient();
+export const queryClient = new QueryClient({
+  mutationCache: new MutationCache({
+    onSuccess: async (data, variable, context, mutation) => {
+      if (Array.isArray(mutation.meta?.invalidates)) {
+        // biome-ignore lint/complexity/noForEach: <explanation>
+        mutation.meta?.invalidates.forEach((key) => {
+          return queryClient.invalidateQueries({
+            queryKey: [key.trim()],
+          });
+        });
+      }
+    },
+  }),
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 10,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: false,
+    }
+  },
+});;
 
 const router = createRouter({
   routeTree,
@@ -40,7 +60,8 @@ function App() {
         router={router}
         defaultPreload="intent"
         context={{
-          auth,
+          pb,
+          queryClient,
         }}
       />
     </>

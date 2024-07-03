@@ -12,7 +12,8 @@ export function MainNavbar({}: MainNavbarProps) {
         <Link to="/" className="">
           <MdCastle className="size-8" />
         </Link>
-        <Link to="/">
+                <Link to="/admin" className="">admin</Link>
+        <Link to="/auth">
           <FaCircleUser className="size-8"/>
         </Link>
       </div>
