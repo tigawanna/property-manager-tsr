@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@park-ui/tailwind-plugin':
+        specifier: ^0.20.1
+        version: 0.20.1(tailwindcss@3.4.4)
       '@tanem/react-nprogress':
         specifier: ^5.0.51
         version: 5.0.51(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -47,6 +50,9 @@ importers:
       redaxios:
         specifier: ^0.5.0
         version: 0.5.1
+      tailwind-variants:
+        specifier: ^0.2.1
+        version: 0.2.1(tailwindcss@3.4.4)
       typed-pocketbase:
         specifier: ^0.1.1
         version: 0.1.1(pocketbase@0.21.3)
@@ -54,6 +60,9 @@ importers:
         specifier: ^3.22.4
         version: 3.23.8
     devDependencies:
+      '@park-ui/cli':
+        specifier: ^0.6.0
+        version: 0.6.0
       '@types/node':
         specifier: ^20.14.9
         version: 20.14.9
@@ -403,6 +412,15 @@ packages:
   '@nodelib/fs.walk@1.2.8':
     resolution: {integrity: sha512-oGB+UxlgWcgQkgwo8GcEGwemoTFt3FIO9ababBmaGwXIoBKZ+GTy0pP185beGg7Llih/NSHSV2XAs1lnznocSg==}
     engines: {node: '>= 8'}
+
+  '@park-ui/cli@0.6.0':
+    resolution: {integrity: sha512-KV/sEhrd2O272BoqZpVw2OEyNCp2DqSYSUhs8+8iMMwohJN36dcOZ+AqLKSOKJQ8CW08r6gVx4FU7KTvUuCbLg==}
+    hasBin: true
+
+  '@park-ui/tailwind-plugin@0.20.1':
+    resolution: {integrity: sha512-FPtx0ERqeIFPHuAUCIkGuIw9jzVIRtOK9cUgoWUztMABR/xKpY/foDcDi13qqpH3wOZSkpdyaIeiowqOAWs4LQ==}
+    peerDependencies:
+      tailwindcss: 3.x
 
   '@pkgjs/parseargs@0.11.0':
     resolution: {integrity: sha512-+1VkjdD0QBLPodGrJUeqarH8VAIvQODIbwh9XpP5Syisf7YoQgsJKPNFoqqLQlu+VQ/tVSshMR6loPMn8U+dPg==}
@@ -1212,6 +1230,15 @@ packages:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
 
+  tailwind-merge@2.3.0:
+    resolution: {integrity: sha512-vkYrLpIP+lgR0tQCG6AP7zZXCTLc1Lnv/CCRT3BqJ9CZ3ui2++GPaGb1x/ILsINIMSYqqvrpqjUFsMNLlW99EA==}
+
+  tailwind-variants@0.2.1:
+    resolution: {integrity: sha512-2xmhAf4UIc3PijOUcJPA1LP4AbxhpcHuHM2C26xM0k81r0maAO6uoUSHl3APmvHZcY5cZCY/bYuJdfFa4eGoaw==}
+    engines: {node: '>=16.x', pnpm: '>=7.x'}
+    peerDependencies:
+      tailwindcss: '*'
+
   tailwindcss-animate@1.0.7:
     resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
     peerDependencies:
@@ -1245,6 +1272,9 @@ packages:
 
   ts-interface-checker@0.1.13:
     resolution: {integrity: sha512-Y/arvbn+rrz3JCKl9C4kVNfTfSm2/mEp5FSz5EsZSANGPSlQrpRI5M4PKF+mJnE52jOO90PnPSc3Ur3bTQw0gA==}
+
+  ts-pattern@5.0.8:
+    resolution: {integrity: sha512-aafbuAQOTEeWmA7wtcL94w6I89EgLD7F+IlWkr596wYxeb0oveWDO5dQpv85YP0CGbxXT/qXBIeV6IYLcoZ2uA==}
 
   tsconfck@3.1.1:
     resolution: {integrity: sha512-00eoI6WY57SvZEVjm13stEVE90VkEdJAFGgpFLTsZbJyW/LwFQ7uQxJHWpZ2hzSWgCPKc9AnBnNP+0X7o3hAmQ==}
@@ -1634,6 +1664,13 @@ snapshots:
     dependencies:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
+
+  '@park-ui/cli@0.6.0': {}
+
+  '@park-ui/tailwind-plugin@0.20.1(tailwindcss@3.4.4)':
+    dependencies:
+      tailwindcss: 3.4.4
+      ts-pattern: 5.0.8
 
   '@pkgjs/parseargs@0.11.0':
     optional: true
@@ -2358,6 +2395,15 @@ snapshots:
 
   supports-preserve-symlinks-flag@1.0.0: {}
 
+  tailwind-merge@2.3.0:
+    dependencies:
+      '@babel/runtime': 7.24.7
+
+  tailwind-variants@0.2.1(tailwindcss@3.4.4):
+    dependencies:
+      tailwind-merge: 2.3.0
+      tailwindcss: 3.4.4
+
   tailwindcss-animate@1.0.7(tailwindcss@3.4.4):
     dependencies:
       tailwindcss: 3.4.4
@@ -2408,6 +2454,8 @@ snapshots:
       is-number: 7.0.0
 
   ts-interface-checker@0.1.13: {}
+
+  ts-pattern@5.0.8: {}
 
   tsconfck@3.1.1(typescript@5.5.3):
     optionalDependencies:

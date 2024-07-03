@@ -5,7 +5,7 @@ import { routeTree } from "./routeTree.gen";
 import { MutationCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { pb } from "./lib/pb/client";
 import "./styles.css"
-
+import "@park-ui/tailwind-plugin/preset.css";
 
 export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
