@@ -7,5 +7,10 @@ export default {
   theme: {
     extend: {},
   },
-  plugins: [require("daisyui"), require("tailwindcss-animate"), parkwindPlugin],
+  parkUI: {
+    accentColor: "yellow",
+    grayColor: "slate",
+    borderRadius: "sm",
+  },
+  plugins: [require("tailwindcss-animate"), parkwindPlugin],
 };

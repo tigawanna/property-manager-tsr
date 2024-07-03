@@ -2,6 +2,7 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import Nprogress from "./navigation/nprogress/Nprogress";
 import { MdCastle } from "react-icons/md";
 import { FaCircleUser } from "react-icons/fa6";
+import { MainSideDrawer } from "./navigation/MainSideDrawer";
 interface MainNavbarProps {}
 
 export function MainNavbar({}: MainNavbarProps) {
@@ -12,10 +13,11 @@ export function MainNavbar({}: MainNavbarProps) {
         <Link to="/" className="">
           <MdCastle className="size-8" />
         </Link>
-                <Link to="/admin" className="">admin</Link>
+        <Link to="/admin" className="">admin</Link>
         <Link to="/auth">
           <FaCircleUser className="size-8"/>
         </Link>
+        <MainSideDrawer/>
       </div>
       <Nprogress isAnimating={isLoading} />
     </nav>

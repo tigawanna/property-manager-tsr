@@ -73,17 +73,18 @@ h6 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply bg-base-content;
+  @apply bg-bg-canvas
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-  @apply bg-accent-content;
+    @apply bg-accent-default;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-  @apply bg-accent;
+  @apply bg-accent-emphasized;
+
 }
 
 

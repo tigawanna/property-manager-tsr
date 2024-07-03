@@ -19,6 +19,7 @@
     "@tanstack/router-devtools": "^1.43.6",
     "@tanstack/router-vite-plugin": "^1.43.9",
     "immer": "^10.0.3",
+    "lucide-react": "^0.400.0",
     "pocketbase": "^0.21.3",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
