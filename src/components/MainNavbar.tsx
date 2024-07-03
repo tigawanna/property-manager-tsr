@@ -8,14 +8,14 @@ interface MainNavbarProps {}
 export function MainNavbar({}: MainNavbarProps) {
   const isLoading = useRouterState({ select: (s) => s.status === "pending" });
   return (
-    <nav className="w-full flex flex-col items-center justify-center py-1 px-3 border-b">
-      <div className="w-full flex justify-between">
+    <nav className="w-full flex flex-col items-center justify-center py-1 px-3 border-b sticky top-0 z-30">
+      <div className="w-full h-full flex items-center justify-between">
         <Link to="/" className="">
           <MdCastle className="size-8" />
         </Link>
         <Link to="/admin" className="">admin</Link>
         <Link to="/auth">
-          <FaCircleUser className="size-8"/>
+          <FaCircleUser className="size-6"/>
         </Link>
         <MainSideDrawer/>
       </div>
