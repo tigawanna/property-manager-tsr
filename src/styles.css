@@ -2,6 +2,76 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+    --fonts-body: var(--font-jakarta);
+    --radii-l1: var(--radii-sm);
+    --radii-l2: var(--radii-md);
+    --radii-l3: var(--radii-lg);
+    --colors-accent-1: var(--colors-gold-1);
+    --colors-accent-a1: var(--colors-gold-a1);
+    --colors-accent-2: var(--colors-gold-2);
+    --colors-accent-a2: var(--colors-gold-a2);
+    --colors-accent-3: var(--colors-gold-3);
+    --colors-accent-a3: var(--colors-gold-a3);
+    --colors-accent-4: var(--colors-gold-4);
+    --colors-accent-a4: var(--colors-gold-a4);
+    --colors-accent-5: var(--colors-gold-5);
+    --colors-accent-a5: var(--colors-gold-a5);
+    --colors-accent-6: var(--colors-gold-6);
+    --colors-accent-a6: var(--colors-gold-a6);
+    --colors-accent-7: var(--colors-gold-7);
+    --colors-accent-a7: var(--colors-gold-a7);
+    --colors-accent-8: var(--colors-gold-8);
+    --colors-accent-a8: var(--colors-gold-a8);
+    --colors-accent-9: var(--colors-gold-9);
+    --colors-accent-a9: var(--colors-gold-a9);
+    --colors-accent-10: var(--colors-gold-10);
+    --colors-accent-a10: var(--colors-gold-a10);
+    --colors-accent-11: var(--colors-gold-11);
+    --colors-accent-a11: var(--colors-gold-a11);
+    --colors-accent-12: var(--colors-gold-12);
+    --colors-accent-a12: var(--colors-gold-a12);
+    --colors-accent-fg: var(--colors-white);
+    --colors-accent-default: var(--colors-accent-9);
+    --colors-accent-emphasized: var(--colors-accent-10);
+    --colors-accent-text: var(--colors-accent-a11);
+}
+
+.dark{
+    --fonts-body: var(--font-jakarta);
+    --radii-l1: var(--radii-sm);
+    --radii-l2: var(--radii-md);
+    --radii-l3: var(--radii-lg);
+    --colors-accent-1: var(--colors-gold-1);
+    --colors-accent-a1: var(--colors-gold-a1);
+    --colors-accent-2: var(--colors-gold-2);
+    --colors-accent-a2: var(--colors-gold-a2);
+    --colors-accent-3: var(--colors-gold-3);
+    --colors-accent-a3: var(--colors-gold-a3);
+    --colors-accent-4: var(--colors-gold-4);
+    --colors-accent-a4: var(--colors-gold-a4);
+    --colors-accent-5: var(--colors-gold-5);
+    --colors-accent-a5: var(--colors-gold-a5);
+    --colors-accent-6: var(--colors-gold-6);
+    --colors-accent-a6: var(--colors-gold-a6);
+    --colors-accent-7: var(--colors-gold-7);
+    --colors-accent-a7: var(--colors-gold-a7);
+    --colors-accent-8: var(--colors-gold-8);
+    --colors-accent-a8: var(--colors-gold-a8);
+    --colors-accent-9: var(--colors-gold-9);
+    --colors-accent-a9: var(--colors-gold-a9);
+    --colors-accent-10: var(--colors-gold-10);
+    --colors-accent-a10: var(--colors-gold-a10);
+    --colors-accent-11: var(--colors-gold-11);
+    --colors-accent-a11: var(--colors-gold-a11);
+    --colors-accent-12: var(--colors-gold-12);
+    --colors-accent-a12: var(--colors-gold-a12);
+    --colors-accent-fg: var(--colors-white);
+    --colors-accent-default: var(--colors-accent-9);
+    --colors-accent-emphasized: var(--colors-accent-10);
+    --colors-accent-text: var(--colors-accent-a11);
+}
+
 /*
   1. Use a more-intuitive box-sizing model.
 */
@@ -73,25 +143,18 @@ h6 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply bg-bg-subtle
+  @apply bg-bg-subtle;
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-accent-default;
+  @apply bg-accent-default;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-accent-emphasized;
-
 }
-
-
-
-
-
-
 
 .skeleton {
   border-radius: var(--rounded-box, 1rem /* 16px */);
@@ -116,6 +179,3 @@ h6 {
     animation-duration: 15s;
   }
 }
-
-
-

@@ -7,11 +7,11 @@ export default {
   theme: {
     extend: {},
   },
-  parkUI: {
-    accentColor: "yellow",
-    grayColor: "slate",
-    borderRadius: "sm",
+  // parkUI: {
+  //   accentColor: "yellow",
+  //   grayColor: "slate",
+  //   borderRadius: "sm",
     
-  },
+  // },
   plugins: [require("tailwindcss-animate"), parkwindPlugin],
 };
