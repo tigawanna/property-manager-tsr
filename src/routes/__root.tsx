@@ -4,8 +4,7 @@ import { QueryClient } from "@tanstack/react-query";
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { MainNavbar } from "@/components/MainNavbar";
 import { PocketBaseClient } from "@/lib/pb/client";
-
-
+import { ParkuiToast } from "@/components/navigation/ParkuiToast";
 
 export const Route = createRootRouteWithContext<{
   pb: PocketBaseClient;
@@ -18,12 +17,9 @@ function RootComponent() {
   return (
     <>
       <div className="h-full min-h-screen flex flex-col bg-bg-default text-fg-default">
-        <MainNavbar/>
-        <div className={`flex-1 flex`}>
-          <div className={`flex-1 border-l`}>
-            <Outlet />
-          </div>
-        </div>
+        <MainNavbar />
+        <Outlet />
+        <ParkuiToast />
       </div>
       <ReactQueryDevtools buttonPosition="bottom-right" />
       <TanStackRouterDevtools position="bottom-left" />

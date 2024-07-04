@@ -3,75 +3,148 @@
 @tailwind utilities;
 
 :root {
-    --fonts-body: var(--font-jakarta);
-    --radii-l1: var(--radii-sm);
-    --radii-l2: var(--radii-md);
-    --radii-l3: var(--radii-lg);
-    --colors-accent-1: var(--colors-gold-1);
-    --colors-accent-a1: var(--colors-gold-a1);
-    --colors-accent-2: var(--colors-gold-2);
-    --colors-accent-a2: var(--colors-gold-a2);
-    --colors-accent-3: var(--colors-gold-3);
-    --colors-accent-a3: var(--colors-gold-a3);
-    --colors-accent-4: var(--colors-gold-4);
-    --colors-accent-a4: var(--colors-gold-a4);
-    --colors-accent-5: var(--colors-gold-5);
-    --colors-accent-a5: var(--colors-gold-a5);
-    --colors-accent-6: var(--colors-gold-6);
-    --colors-accent-a6: var(--colors-gold-a6);
-    --colors-accent-7: var(--colors-gold-7);
-    --colors-accent-a7: var(--colors-gold-a7);
-    --colors-accent-8: var(--colors-gold-8);
-    --colors-accent-a8: var(--colors-gold-a8);
-    --colors-accent-9: var(--colors-gold-9);
-    --colors-accent-a9: var(--colors-gold-a9);
-    --colors-accent-10: var(--colors-gold-10);
-    --colors-accent-a10: var(--colors-gold-a10);
-    --colors-accent-11: var(--colors-gold-11);
-    --colors-accent-a11: var(--colors-gold-a11);
-    --colors-accent-12: var(--colors-gold-12);
-    --colors-accent-a12: var(--colors-gold-a12);
-    --colors-accent-fg: var(--colors-white);
-    --colors-accent-default: var(--colors-accent-9);
-    --colors-accent-emphasized: var(--colors-accent-10);
-    --colors-accent-text: var(--colors-accent-a11);
+  --fonts-body: var(--font-jakarta);
+  --radii-l1: var(--radii-sm);
+  --radii-l2: var(--radii-md);
+  --radii-l3: var(--radii-lg);
+  --colors-accent-1: var(--colors-gold-1);
+  --colors-accent-a1: var(--colors-gold-a1);
+  --colors-accent-2: var(--colors-gold-2);
+  --colors-accent-a2: var(--colors-gold-a2);
+  --colors-accent-3: var(--colors-gold-3);
+  --colors-accent-a3: var(--colors-gold-a3);
+  --colors-accent-4: var(--colors-gold-4);
+  --colors-accent-a4: var(--colors-gold-a4);
+  --colors-accent-5: var(--colors-gold-5);
+  --colors-accent-a5: var(--colors-gold-a5);
+  --colors-accent-6: var(--colors-gold-6);
+  --colors-accent-a6: var(--colors-gold-a6);
+  --colors-accent-7: var(--colors-gold-7);
+  --colors-accent-a7: var(--colors-gold-a7);
+  --colors-accent-8: var(--colors-gold-8);
+  --colors-accent-a8: var(--colors-gold-a8);
+  --colors-accent-9: var(--colors-gold-9);
+  --colors-accent-a9: var(--colors-gold-a9);
+  --colors-accent-10: var(--colors-gold-10);
+  --colors-accent-a10: var(--colors-gold-a10);
+  --colors-accent-11: var(--colors-gold-11);
+  --colors-accent-a11: var(--colors-gold-a11);
+  --colors-accent-12: var(--colors-gold-12);
+  --colors-accent-a12: var(--colors-gold-a12);
+  --colors-accent-fg: var(--colors-white);
+  --colors-accent-default: var(--colors-accent-9);
+  --colors-accent-emphasized: var(--colors-accent-10);
+  --colors-accent-text: var(--colors-accent-a11);
 }
 
-.dark{
-    --fonts-body: var(--font-jakarta);
-    --radii-l1: var(--radii-sm);
-    --radii-l2: var(--radii-md);
-    --radii-l3: var(--radii-lg);
-    --colors-accent-1: var(--colors-gold-1);
-    --colors-accent-a1: var(--colors-gold-a1);
-    --colors-accent-2: var(--colors-gold-2);
-    --colors-accent-a2: var(--colors-gold-a2);
-    --colors-accent-3: var(--colors-gold-3);
-    --colors-accent-a3: var(--colors-gold-a3);
-    --colors-accent-4: var(--colors-gold-4);
-    --colors-accent-a4: var(--colors-gold-a4);
-    --colors-accent-5: var(--colors-gold-5);
-    --colors-accent-a5: var(--colors-gold-a5);
-    --colors-accent-6: var(--colors-gold-6);
-    --colors-accent-a6: var(--colors-gold-a6);
-    --colors-accent-7: var(--colors-gold-7);
-    --colors-accent-a7: var(--colors-gold-a7);
-    --colors-accent-8: var(--colors-gold-8);
-    --colors-accent-a8: var(--colors-gold-a8);
-    --colors-accent-9: var(--colors-gold-9);
-    --colors-accent-a9: var(--colors-gold-a9);
-    --colors-accent-10: var(--colors-gold-10);
-    --colors-accent-a10: var(--colors-gold-a10);
-    --colors-accent-11: var(--colors-gold-11);
-    --colors-accent-a11: var(--colors-gold-a11);
-    --colors-accent-12: var(--colors-gold-12);
-    --colors-accent-a12: var(--colors-gold-a12);
-    --colors-accent-fg: var(--colors-white);
-    --colors-accent-default: var(--colors-accent-9);
-    --colors-accent-emphasized: var(--colors-accent-10);
-    --colors-accent-text: var(--colors-accent-a11);
+.dark {
+  --fonts-body: var(--font-jakarta);
+  --radii-l1: var(--radii-sm);
+  --radii-l2: var(--radii-md);
+  --radii-l3: var(--radii-lg);
+  --colors-accent-1: var(--colors-gold-1);
+  --colors-accent-a1: var(--colors-gold-a1);
+  --colors-accent-2: var(--colors-gold-2);
+  --colors-accent-a2: var(--colors-gold-a2);
+  --colors-accent-3: var(--colors-gold-3);
+  --colors-accent-a3: var(--colors-gold-a3);
+  --colors-accent-4: var(--colors-gold-4);
+  --colors-accent-a4: var(--colors-gold-a4);
+  --colors-accent-5: var(--colors-gold-5);
+  --colors-accent-a5: var(--colors-gold-a5);
+  --colors-accent-6: var(--colors-gold-6);
+  --colors-accent-a6: var(--colors-gold-a6);
+  --colors-accent-7: var(--colors-gold-7);
+  --colors-accent-a7: var(--colors-gold-a7);
+  --colors-accent-8: var(--colors-gold-8);
+  --colors-accent-a8: var(--colors-gold-a8);
+  --colors-accent-9: var(--colors-gold-9);
+  --colors-accent-a9: var(--colors-gold-a9);
+  --colors-accent-10: var(--colors-gold-10);
+  --colors-accent-a10: var(--colors-gold-a10);
+  --colors-accent-11: var(--colors-gold-11);
+  --colors-accent-a11: var(--colors-gold-a11);
+  --colors-accent-12: var(--colors-gold-12);
+  --colors-accent-a12: var(--colors-gold-a12);
+  --colors-accent-fg: var(--colors-white);
+  --colors-accent-default: var(--colors-accent-9);
+  --colors-accent-emphasized: var(--colors-accent-10);
+  --colors-accent-text: var(--colors-accent-a11);
 }
 
+.toast__root {
+  background: var(--colors-bg-default);
+  border-radius: var(--radii-l3);
+  box-shadow: var(--shadows-lg);
+  min-width: var(--sizes-xs);
+  height: var(--height);
+  opacity: var(--opacity);
+  overflow-wrap: anywhere;
+  padding: var(--spacing-4);
+  position: relative;
+  scale: var(--scale);
+  translate: var(--x) var(--y) 0;
+  will-change: translate, opacity, scale;
+  z-index: var(--z-index);
+  --transition-duration: var(--durations-slow);
+  transition-duration: var(--durations-slow);
+  --transition-prop: translate, scale, opacity, height;
+  transition-property: translate, scale, opacity, height;
+  --transition-easing: var(--easings-default);
+  transition-timing-function: var(--easings-default);
+}
+
+.toast__title {
+  color: var(--colors-fg-default);
+  font-weight: var(--font-weights-semibold);
+}
+
+.toast__description,
+.toast__title {
+  font-size: var(--font-sizes-sm);
+  line-height: 1.25rem;
+}
+
+.toast__description {
+  color: var(--colors-fg-muted);
+}
+
+.toast__actionTrigger {
+  margin-top: var(--spacing-2);
+}
+
+.toast__closeTrigger {
+  position: absolute;
+  top: var(--spacing-3);
+  right: var(--spacing-3);
+}
+
+.toast--type__info {
+  @apply bg-bg-muted;
+}
+/* Base styles for toast types (assuming Tailwind CSS) */
+.toast--type__success {
+  @apply text-green-900 bg-green-200;
+}
+
+.toast--type__error {
+  @apply text-red-900 bg-red-300;
+}
+.toast--type__loading {
+  @apply text-blue-900 bg-blue-300;
+}
+
+/* Dark mode styles (assuming a `.dark` class is applied to the body in dark mode) */
+.dark .toast--type__success {
+  @apply text-green-300 bg-green-900;
+}
+
+.dark .toast--type__error {
+  @apply text-red-300 bg-red-900;
+}
+.dark .toast--type__loading {
+  @apply text-blue-300 bg-blue-900;
+}
 /*
   1. Use a more-intuitive box-sizing model.
 */
