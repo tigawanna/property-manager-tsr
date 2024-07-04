@@ -11,6 +11,7 @@ export default {
     accentColor: "yellow",
     grayColor: "slate",
     borderRadius: "sm",
+    
   },
   plugins: [require("tailwindcss-animate"), parkwindPlugin],
 };

@@ -73,7 +73,7 @@ h6 {
 
 /* Track */
 ::-webkit-scrollbar-track {
-  @apply bg-bg-canvas
+  @apply bg-bg-subtle
 }
 
 /* Handle */
@@ -86,6 +86,9 @@ h6 {
   @apply bg-accent-emphasized;
 
 }
+
+
+
 
 
 

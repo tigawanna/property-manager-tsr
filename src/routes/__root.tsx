@@ -17,7 +17,7 @@ export const Route = createRootRouteWithContext<{
 function RootComponent() {
   return (
     <>
-      <div className={`min-h-screen flex flex-col`}>
+      <div className="h-full min-h-screen flex flex-col bg-bg-default text-fg-default">
         <MainNavbar/>
         <div className={`flex-1 flex`}>
           <div className={`flex-1 border-l`}>
