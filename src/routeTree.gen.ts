@@ -15,6 +15,7 @@ import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
+import { Route as AuthSignupImport } from './routes/auth/signup'
 
 // Create/Update Routes
 
@@ -38,6 +39,11 @@ const AdminIndexRoute = AdminIndexImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AuthSignupRoute = AuthSignupImport.update({
+  path: '/auth/signup',
+  getParentRoute: () => rootRoute,
+} as any)
+
 // Populate the FileRoutesByPath interface
 
 declare module '@tanstack/react-router' {
@@ -54,6 +60,13 @@ declare module '@tanstack/react-router' {
       path: ''
       fullPath: ''
       preLoaderRoute: typeof LayoutImport
+      parentRoute: typeof rootRoute
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupImport
       parentRoute: typeof rootRoute
     }
     '/admin/': {
@@ -77,6 +90,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
+  AuthSignupRoute,
   AdminIndexRoute,
   AuthIndexRoute,
 })
@@ -91,6 +105,7 @@ export const routeTree = rootRoute.addChildren({
       "children": [
         "/",
         "/_layout",
+        "/auth/signup",
         "/admin/",
         "/auth/"
       ]
@@ -100,6 +115,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/_layout": {
       "filePath": "_layout.tsx"
+    },
+    "/auth/signup": {
+      "filePath": "auth/signup.tsx"
     },
     "/admin/": {
       "filePath": "admin/index.tsx"
