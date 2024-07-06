@@ -9,6 +9,7 @@ import { useMutation } from "@tanstack/react-query";
 import { pb } from "@/lib/pb/client";
 import { toaster } from "@/components/navigation/ParkuiToast";
 import { TextFormField } from "@/lib/tanstack/form/TextFields";
+import { MutationButton } from "@/lib/tanstack/query/MutationButton";
 
 interface SignupComponentProps {}
 
@@ -43,15 +44,16 @@ export function SignupComponent({}: SignupComponentProps) {
     mutationFn: (data: PropertyUserCreate) => {
       return pb.from("property_user").create(data);
     },
-    onSuccess(data, variables, context) {
+    onSuccess(data) {
       toaster.create({
         title: "Logged in",
         description: `Welcome ${data.username}`,
         type: "success",
         duration: 2000,
       });
+
     },
-    onError(error, variables, context) {
+    onError(error) {
       toaster.create({
         title: "Something went wrong",
         description: `${error.message}`,
@@ -73,10 +75,10 @@ export function SignupComponent({}: SignupComponentProps) {
         <h1 className="text-4xl">Signup</h1>
         <form.Field
           name="username"
-          // validatorAdapter={zodValidator()}
-          // validators={{
-          // onChange: z.string(),
-          // }}
+          validatorAdapter={zodValidator()}
+          validators={{
+          onChange: z.string(),
+          }}
           children={(field) => {
             return (
               <TextFormField<PropertyUserCreate>
@@ -152,6 +154,7 @@ export function SignupComponent({}: SignupComponentProps) {
             );
           }}
         />
+        <MutationButton mutation={mutation}/>
       </form>
     </div>
   );
