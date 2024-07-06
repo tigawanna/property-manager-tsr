@@ -16,7 +16,7 @@ export function TextFormField<T>({
   className,
 }: TextFormFieldProps<T>) {
   const inputClassname = twMerge(
-    field.state.meta.touchedErrors.length>0 ? "bg-bg-default border-error-content" : "bg-bg-default",
+    field.state.meta.touchedErrors.length>0 ? "border-error-content" : "",
     className
   );
 

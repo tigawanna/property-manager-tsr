@@ -25,7 +25,7 @@ export function MutationButton({
       )}
       disabled={mutation.isPending}
       {...props}>
-      {label || <div> Save</div>}
+      {label || <div> Submit</div>}
       {mutation.isPending && <Loader className={twMerge("animate-spin", loaderClassname)} />}
     </Button>
   );
