@@ -1,7 +1,11 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-
+import { z } from "zod";
+const searchparams = z.object({
+  returnTo: z.string(),
+});
 export const Route = createFileRoute("/auth/")({
   component: SigninPage,
+  validateSearch: (search) => searchparams.parse(search),
 });
 
 interface SigninPageProps {}

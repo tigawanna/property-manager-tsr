@@ -9,7 +9,7 @@ import "@park-ui/tailwind-plugin/preset.css";
 
 export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
-    onSuccess: async (data, variable, context, mutation) => {
+    onSuccess: async (_, __, ___, mutation) => {
       if (Array.isArray(mutation.meta?.invalidates)) {
         // biome-ignore lint/complexity/noForEach: <explanation>
         mutation.meta?.invalidates.forEach((key) => {

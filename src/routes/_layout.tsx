@@ -5,6 +5,7 @@ export const Route = createFileRoute('/_layout')({
 })
 
 function LayoutComponent() {
+
   return (
     <div>
       <div>Layout</div>

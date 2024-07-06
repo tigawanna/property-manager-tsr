@@ -8,7 +8,7 @@ Object.assign(process.env, env);
 export default defineConfig({
   plugins: [react(), TanStackRouterVite(), tsconfigPaths()],
   server: {
-    port: 3000,
+    port: 3001,
     open: true,
     host: true,
   },

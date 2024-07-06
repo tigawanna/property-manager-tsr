@@ -1,18 +1,18 @@
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute("/admin/")({
-  component:DashboardPage
+  component:AdminPage
 });
 
 
-interface DashboardPageProps {
+interface AdminPageProps {
 
 }
 
-export function DashboardPage({}:DashboardPageProps){
+export function AdminPage({}:AdminPageProps){
 return (
  <div className='w-full h-full  min-h-screen flex justify-center items-center'>
-  <h1 className="text-3xl">Dashboard</h1>
+  <h1 className="text-3xl">Admin</h1>
  </div>
 );
 }
