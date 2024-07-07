@@ -51,11 +51,11 @@ export async function authGuard({ ctx, role, reverse }: AuthGuardProps) {
   // @ts-expect-error
   const returnTo = ctx.search?.returnTo ?? "/";
   const user = ctx.context?.viewer;
-  console.log(" ============ user in ",ctx.location.pathname," guard =========== ", user);
-  console.log(" ============ user in ",ctx.location.pathname," guard =========== ", user?.record);
-  
+  // console.log(" ============ user in ",ctx.location.pathname," guard =========== ", user);
+  // console.log(" ============ user in ",ctx.location.pathname," guard =========== ", user?.record);
+
   if (!user?.record) {
-    console.log(" ++++++++ no user redirectiong to auth ++++++ ");
+    // console.log(" ++++++++ no user redirectiong to auth ++++++ ");
     throw redirect({
       to: "/auth",
       search: {
@@ -65,19 +65,19 @@ export async function authGuard({ ctx, role, reverse }: AuthGuardProps) {
   }
   // redirect beck if a user exists , to be used in auth routes
   if (reverse) {
-    console.log(" ++++++++ user exists in auth redirecting back ++++++ ");
+    // console.log(" ++++++++ user exists in auth redirecting back ++++++ ");
     throw redirect({
       to: returnTo ?? "/",
     });
   }
   // redirect if not the right role
   if (role && user?.record?.role !== role) {
-    console.log(" ++++++++ user exists but wrong role redirecting back ++++++ ");
+    // console.log(" ++++++++ user exists but wrong role redirecting back ++++++ ");
     throw redirect({
       to: returnTo ?? "/",
     });
   }
-  console.log(" ++++++++ fall through case user exists ++++++ ");
+  // console.log(" ++++++++ fall through case user exists ++++++ ");
 }
 // export async function authGuard({ ctx, role, reverse }: AuthGuardProps) {
 //   // @ts-expect-error

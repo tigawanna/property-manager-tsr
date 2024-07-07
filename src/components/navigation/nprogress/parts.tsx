@@ -30,7 +30,7 @@ interface BarProps {
 export function Bar({ animationDuration, progress }: BarProps) {
   return (
     <div
-      className="bg-accent"
+      className="bg-accent-emphasized"
       style={{
         // background: "#29d",
         height: 4,

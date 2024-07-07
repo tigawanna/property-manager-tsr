@@ -13,6 +13,7 @@
 import { Route as rootRoute } from './routes/__root'
 import { Route as LayoutImport } from './routes/_layout'
 import { Route as IndexImport } from './routes/index'
+import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
@@ -27,6 +28,11 @@ const LayoutRoute = LayoutImport.update({
 
 const IndexRoute = IndexImport.update({
   path: '/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const ProfileIndexRoute = ProfileIndexImport.update({
+  path: '/profile/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -96,6 +102,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthIndexImport
       parentRoute: typeof rootRoute
     }
+    '/profile/': {
+      id: '/profile/'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -107,6 +120,7 @@ export const routeTree = rootRoute.addChildren({
   AuthSignupRoute,
   AdminIndexRoute,
   AuthIndexRoute,
+  ProfileIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -122,7 +136,8 @@ export const routeTree = rootRoute.addChildren({
         "/admin/bills",
         "/auth/signup",
         "/admin/",
-        "/auth/"
+        "/auth/",
+        "/profile/"
       ]
     },
     "/": {
@@ -142,6 +157,9 @@ export const routeTree = rootRoute.addChildren({
     },
     "/auth/": {
       "filePath": "auth/index.tsx"
+    },
+    "/profile/": {
+      "filePath": "profile/index.tsx"
     }
   }
 }
