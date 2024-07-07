@@ -15,57 +15,56 @@ import { viewerqueryOptions } from "@/lib/tanstack/query/use-viewer";
 
 interface SigninComponentProps {}
 
-
-interface PropertyUserLogn{
-  emailOrUsername:string;
-  password:string;
+interface PropertyUserLogn {
+  emailOrUsername: string;
+  password: string;
 }
 
 const formOpts = formOptions<PropertyUserLogn>({
   defaultValues: {
     emailOrUsername: "",
     password: "",
-
   },
 });
 export function SigninComponent({}: SigninComponentProps) {
-    const [showPassword, setShowPassword] = useState(false);
-    const qc = useQueryClient();
-    const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const qc = useQueryClient();
+  const router = useRouter();
+  const { returnTo } = Route.useSearch();
 
-    const mutation = useMutation({
-      mutationFn: (data: PropertyUserLogn) => {
-        return pb.from("property_user").authWithPassword(data.emailOrUsername, data.password);
-      },
-      onSuccess(data) {
-        toaster.create({
-          title: "signed in",
-          description: `Welcome ${data.record.username}`,
-          type: "success",
-          duration: 2000,
-        });
-        qc.invalidateQueries(viewerqueryOptions);
-        const { returnTo } = Route.useSearch();
-        router.navigate({
-          to: returnTo || "/",
-        });
-      },
-      onError(error) {
-        console.log(error.name);
-        toaster.create({
-          title: "Something went wrong",
-          description: `${error.message}`,
-          type: "error",
-          duration: 20000,
-        });
-      },
-    });
-    const form = useForm({
-      ...formOpts,
-      onSubmit: async ({ value }) => {
-        await mutation.mutate(value);
-      },
-    });
+  const mutation = useMutation({
+    mutationFn: (data: PropertyUserLogn) => {
+      return pb.from("property_user").authWithPassword(data.emailOrUsername, data.password);
+    },
+    onSuccess(data) {
+      toaster.create({
+        title: "signed in",
+        description: `Welcome ${data.record.username}`,
+        type: "success",
+        duration: 2000,
+      });
+      qc.invalidateQueries(viewerqueryOptions);
+
+      router.navigate({
+        to: returnTo || "/",
+      });
+    },
+    onError(error) {
+      console.log(error.name);
+      toaster.create({
+        title: "Something went wrong",
+        description: `${error.message}`,
+        type: "error",
+        duration: 20000,
+      });
+    },
+  });
+  const form = useForm({
+    ...formOpts,
+    onSubmit: async ({ value }) => {
+      await mutation.mutate(value);
+    },
+  });
   return (
     <div className="w-full  h-full flex flex-col items-center justify-center   ">
       <form

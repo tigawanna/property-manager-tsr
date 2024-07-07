@@ -16,8 +16,6 @@ import { Route } from "../signup";
 
 interface SignupComponentProps {}
 
-
-
 const formOpts = formOptions<PropertyUserCreate>({
   defaultValues: {
     username: "",
@@ -33,9 +31,9 @@ const formOpts = formOptions<PropertyUserCreate>({
 
 export function SignupComponent({}: SignupComponentProps) {
   const [showPassword, setShowPassword] = useState(false);
-  const qc = useQueryClient()
-  const router  = useRouter()
-
+  const qc = useQueryClient();
+  const router = useRouter();
+  const { returnTo } = Route.useSearch();
   const mutation = useMutation({
     mutationFn: (data: PropertyUserCreate) => {
       return pb.from("property_user").create(data);
@@ -48,9 +46,9 @@ export function SignupComponent({}: SignupComponentProps) {
         duration: 2000,
       });
       qc.invalidateQueries(viewerqueryOptions);
-      const {returnTo} = Route.useSearch()
+
       router.navigate({
-        to: returnTo||"/"
+        to: returnTo || "/",
       });
     },
     onError(error) {
@@ -66,7 +64,7 @@ export function SignupComponent({}: SignupComponentProps) {
   const form = useForm({
     ...formOpts,
     onSubmit: async ({ value }) => {
-        await mutation.mutate(value);
+      await mutation.mutate(value);
     },
   });
 
@@ -173,9 +171,7 @@ export function SignupComponent({}: SignupComponentProps) {
           </div>
         </div>
 
-
-        <MutationButton  mutation={mutation} />
-
+        <MutationButton mutation={mutation} />
       </form>
     </div>
   );

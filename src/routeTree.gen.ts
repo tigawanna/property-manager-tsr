@@ -18,6 +18,7 @@ import { Route as IndexImport } from './routes/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
+import { Route as AdminBillsImport } from './routes/admin/bills'
 import { Route as AdminLayoutImport } from './routes/admin/_layout'
 
 // Create Virtual Routes
@@ -54,6 +55,11 @@ const AdminIndexRoute = AdminIndexImport.update({
 const AuthSignupRoute = AuthSignupImport.update({
   path: '/auth/signup',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AdminBillsRoute = AdminBillsImport.update({
+  path: '/bills',
+  getParentRoute: () => AdminRoute,
 } as any)
 
 const AdminLayoutRoute = AdminLayoutImport.update({
@@ -93,6 +99,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminLayoutImport
       parentRoute: typeof AdminRoute
     }
+    '/admin/bills': {
+      id: '/admin/bills'
+      path: '/bills'
+      fullPath: '/admin/bills'
+      preLoaderRoute: typeof AdminBillsImport
+      parentRoute: typeof AdminImport
+    }
     '/auth/signup': {
       id: '/auth/signup'
       path: '/auth/signup'
@@ -121,7 +134,7 @@ declare module '@tanstack/react-router' {
 
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
-  AdminRoute: AdminRoute.addChildren({ AdminIndexRoute }),
+  AdminRoute: AdminRoute.addChildren({ AdminBillsRoute, AdminIndexRoute }),
   AuthSignupRoute,
   AuthIndexRoute,
 })
@@ -151,11 +164,16 @@ export const routeTree = rootRoute.addChildren({
       "filePath": "admin",
       "children": [
         "/admin/_layout",
+        "/admin/bills",
         "/admin/"
       ]
     },
     "/admin/_layout": {
       "filePath": "admin/_layout.tsx",
+      "parent": "/admin"
+    },
+    "/admin/bills": {
+      "filePath": "admin/bills.tsx",
       "parent": "/admin"
     },
     "/auth/signup": {

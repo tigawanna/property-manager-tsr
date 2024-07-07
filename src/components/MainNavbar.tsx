@@ -26,7 +26,7 @@ export function MainNavbar({}: MainNavbarProps) {
           })}
         </div>
         <div className=" h-full hidden sm:flex gap-2 justify-center items-center rounded-full ">
-          <Link to="/auth">
+          <Link to="/auth" search={{ returnTo: "/" }}>
             <FaCircleUser className="size-6" />
           </Link>
           <ThemeToggle />

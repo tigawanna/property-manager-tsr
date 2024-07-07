@@ -1,4 +1,4 @@
-import { HomeIcon, LayoutDashboard, UserCog } from "lucide-react";
+import { HomeIcon, LayoutDashboard } from "lucide-react";
 
 export const navbarRoutes = [
   {
@@ -11,9 +11,5 @@ export const navbarRoutes = [
     path: "/admin",
     icon: LayoutDashboard,
   },
-  {
-    name: "Auth",
-    path: "/auth",
-    icon: UserCog,
-  }
+
 ] as const
