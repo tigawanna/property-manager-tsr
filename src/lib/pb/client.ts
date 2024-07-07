@@ -6,11 +6,7 @@ import { Schema } from "./database";
 export type PocketBaseClient = TypedPocketBase<Schema>;
 const PB_URL = import.meta.env.VITE_PB_URL;
 export const pb = new TypedPocketBase<Schema>(PB_URL)
-// pb.authStore.onChange((uwu) => {
-//   if(typeof window !== "undefined"){
-//   location.reload()
-// }
-// })
+
 export type CollectionName = keyof Schema;
 
 export function getFileURL({

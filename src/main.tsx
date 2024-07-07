@@ -7,6 +7,7 @@ import { pb } from "./lib/pb/client";
 import "./styles.css";
 import "@park-ui/tailwind-plugin/preset.css";
 import { useViewer, viewerqueryOptions } from "./lib/tanstack/query/use-viewer";
+import { useEffect } from "react";
 
 export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
@@ -55,6 +56,17 @@ declare module "@tanstack/react-router" {
   }
 }
 function App() {
+  // useEffect(() => {
+  //   const pbChange = pb.authStore.onChange(() => {
+  //     if (typeof window !== "undefined") {
+  //       location.reload();
+  //     }
+  //   });
+  //   return () => {
+  //     return pbChange();
+  //   }
+  // }, [])
+  
   const { userQuery } = useViewer();
   console.log(" ============ userQuery in main.tsx =========== ", userQuery.data);
 

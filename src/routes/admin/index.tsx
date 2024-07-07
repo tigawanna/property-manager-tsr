@@ -4,8 +4,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 export const Route = createFileRoute("/admin/")({
   component: AdminPage,
   async beforeLoad(ctx) {
-  const user = ctx.context.viewer
-  console.log("user in admin guard ================ ",user)
+    await authGuard({ ctx });
   },
 });
 

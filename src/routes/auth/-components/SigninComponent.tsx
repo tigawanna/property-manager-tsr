@@ -44,11 +44,9 @@ export function SigninComponent({}: SigninComponentProps) {
         duration: 2000,
       });
       qc.invalidateQueries(viewerqueryOptions);
-      console.log(" ========== data ========= ", returnTo);
-      redirect({ to: returnTo || "/" });
-      // router.navigate({
-      //   to: returnTo || "/",
-      // });
+      if (typeof window !== "undefined") {
+        location.reload();
+      }
     },
     onError(error) {
       console.log(error.name);

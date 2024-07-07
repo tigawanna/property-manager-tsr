@@ -4,6 +4,6 @@ import { createFileRoute } from '@tanstack/react-router'
 export const Route = createFileRoute("/admin/bills")({
   component: () => <div>Hello /admin/bills!</div>,
   async beforeLoad(ctx) {
-    // await authGuard({ ctx });
+    await authGuard({ ctx });
   },
 });

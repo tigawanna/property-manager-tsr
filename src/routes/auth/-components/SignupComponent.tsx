@@ -11,8 +11,7 @@ import { MutationButton } from "@/lib/tanstack/query/MutationButton";
 import { Checkbox } from "@/components/park/ui/checkbox";
 import { useState } from "react";
 import { viewerqueryOptions } from "@/lib/tanstack/query/use-viewer";
-import { useRouter } from "@tanstack/react-router";
-import { Route } from "../signup";
+
 
 interface SignupComponentProps {}
 
@@ -32,8 +31,7 @@ const formOpts = formOptions<PropertyUserCreate>({
 export function SignupComponent({}: SignupComponentProps) {
   const [showPassword, setShowPassword] = useState(false);
   const qc = useQueryClient();
-  const router = useRouter();
-  const { returnTo } = Route.useSearch();
+
   const mutation = useMutation({
     mutationFn: (data: PropertyUserCreate) => {
       return pb.from("property_user").create(data);
@@ -47,9 +45,9 @@ export function SignupComponent({}: SignupComponentProps) {
       });
       qc.invalidateQueries(viewerqueryOptions);
 
-      router.navigate({
-        to: returnTo || "/",
-      });
+      if (typeof window !== "undefined") {
+        location.reload();
+      }
     },
     onError(error) {
       console.log(error.name);
