@@ -5,6 +5,7 @@ import { FaCircleUser } from "react-icons/fa6";
 import { MainSideDrawer } from "./navigation/MainSideDrawer";
 import { navbarRoutes } from "./navigation/navbar-routes";
 import { ThemeToggle } from "./navigation/ThemeToggle";
+import { NavbarUser } from "./NavbarUser";
 interface MainNavbarProps {}
 
 export function MainNavbar({}: MainNavbarProps) {
@@ -29,6 +30,7 @@ export function MainNavbar({}: MainNavbarProps) {
           <Link to="/auth" search={{ returnTo: "/" }}>
             <FaCircleUser className="size-6" />
           </Link>
+          <NavbarUser/>
           <ThemeToggle />
         </div>
         <div className="h-full md:hidden">

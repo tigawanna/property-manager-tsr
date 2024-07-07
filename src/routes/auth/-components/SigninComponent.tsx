@@ -1,4 +1,4 @@
-import { useRouter } from "@tanstack/react-router";
+import { redirect, useRouter } from "@tanstack/react-router";
 import { Route } from "../index";
 import { formOptions, useForm } from "@tanstack/react-form";
 import { FormLabel } from "@/components/park/ui/form-label";
@@ -29,7 +29,7 @@ const formOpts = formOptions<PropertyUserLogn>({
 export function SigninComponent({}: SigninComponentProps) {
   const [showPassword, setShowPassword] = useState(false);
   const qc = useQueryClient();
-  const router = useRouter();
+  // const router = useRouter();
   const { returnTo } = Route.useSearch();
 
   const mutation = useMutation({
@@ -44,10 +44,11 @@ export function SigninComponent({}: SigninComponentProps) {
         duration: 2000,
       });
       qc.invalidateQueries(viewerqueryOptions);
-
-      router.navigate({
-        to: returnTo || "/",
-      });
+      console.log(" ========== data ========= ", returnTo);
+      redirect({ to: returnTo || "/" });
+      // router.navigate({
+      //   to: returnTo || "/",
+      // });
     },
     onError(error) {
       console.log(error.name);
@@ -74,7 +75,7 @@ export function SigninComponent({}: SigninComponentProps) {
           form.handleSubmit();
         }}
         className="w-[90%] md:w-[60%] lg:w-[50%] h-full flex flex-col items-center justify-center p-[2%] bg-bg-muted rounded-md gap-3 ">
-        <h1 className="text-4xl">Signup</h1>
+        <h1 className="text-4xl">Sign in</h1>
         <form.Field
           name="emailOrUsername"
           validatorAdapter={zodValidator()}

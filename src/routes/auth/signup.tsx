@@ -1,6 +1,7 @@
 import { createFileRoute } from '@tanstack/react-router'
 import { SignupComponent } from './-components/SignupComponent';
 import { z } from 'zod';
+import { authGuard } from '@/lib/tanstack/query/use-viewer';
 
 
 const searchparams = z.object({
@@ -9,9 +10,9 @@ const searchparams = z.object({
 export const Route = createFileRoute("/auth/signup")({
   component: SignupPage,
   validateSearch: (search) => searchparams.parse(search),
-  // async beforeLoad(ctx) {
-  //   await authGuard({ ctx, reverse: true });
-  // }
+  async beforeLoad(ctx) {
+    // await authGuard({ ctx, reverse: true });
+  }
 });
 
 interface SignupProps {

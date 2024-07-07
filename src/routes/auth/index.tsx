@@ -9,7 +9,7 @@ export const Route = createFileRoute("/auth/")({
   component: SigninPage,
   validateSearch: (search) => searchparams.parse(search),
   async beforeLoad(ctx) {
-    await authGuard({ ctx, reverse: true });
+    // await authGuard({ ctx, reverse: true });
   },
 });
 

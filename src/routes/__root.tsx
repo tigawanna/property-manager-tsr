@@ -5,10 +5,13 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
 import { MainNavbar } from "@/components/MainNavbar";
 import { PocketBaseClient } from "@/lib/pb/client";
 import { ParkuiToast } from "@/components/navigation/ParkuiToast";
+import { PropertyUserResponse } from "@/lib/pb/database";
+import { RecordAuthResponse } from "pocketbase";
 
 export const Route = createRootRouteWithContext<{
   pb: PocketBaseClient;
   queryClient: QueryClient;
+  viewer?: RecordAuthResponse<PropertyUserResponse>
 }>()({
   component: RootComponent,
 });

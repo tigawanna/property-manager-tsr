@@ -4,8 +4,9 @@ import { Spinner } from "./components/Spinner";
 import { routeTree } from "./routeTree.gen";
 import { MutationCache, QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { pb } from "./lib/pb/client";
-import "./styles.css"
+import "./styles.css";
 import "@park-ui/tailwind-plugin/preset.css";
+import { useViewer, viewerqueryOptions } from "./lib/tanstack/query/use-viewer";
 
 export const queryClient = new QueryClient({
   mutationCache: new MutationCache({
@@ -25,9 +26,9 @@ export const queryClient = new QueryClient({
       staleTime: 1000 * 10,
       refetchOnWindowFocus: false,
       refetchOnReconnect: false,
-    }
+    },
   },
-});;
+});
 
 const router = createRouter({
   routeTree,
@@ -40,6 +41,7 @@ const router = createRouter({
   context: {
     auth: undefined!, // We'll inject this when we render
     queryClient,
+    viewer: undefined,
   },
   defaultPreload: "intent",
   // Since we're using React Query, we don't want loader calls to ever be stale
@@ -52,8 +54,10 @@ declare module "@tanstack/react-router" {
     router: typeof router;
   }
 }
-
 function App() {
+  const { userQuery } = useViewer();
+  console.log(" ============ userQuery in main.tsx =========== ", userQuery.data);
+
   return (
     <>
       <RouterProvider
@@ -62,6 +66,7 @@ function App() {
         context={{
           pb,
           queryClient,
+          viewer: userQuery.data,
         }}
       />
     </>
