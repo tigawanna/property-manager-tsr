@@ -41,8 +41,24 @@ export async function authGuard({ ctx, role, reverse }: AuthGuardProps) {
       throw new Error(returnTo);
     }
   } catch (error: any) {
+    const err_msg = error?.message as string;
+
+    if (err_msg.startsWith("/") || err_msg.startsWith("..")) {
+      if (err_msg.startsWith("/auth")) {
+        throw redirect({
+          to: "/auth",
+          search: {
+            returnTo: ctx.location.pathname,
+          },
+        });
+      }
+      throw redirect({
+        to: err_msg ?? "/",
+      });
+    }
+
     throw redirect({
-      to: error?.message ?? "/",
+      to: "/auth",
       search: {
         returnTo: ctx.location.pathname,
       },
