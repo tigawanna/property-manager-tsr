@@ -1,4 +1,4 @@
-import { redirect, useNavigate, useRouter } from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 import { Route } from "../index";
 import { formOptions, useForm } from "@tanstack/react-form";
 import { FormLabel } from "@/components/park/ui/form-label";
@@ -29,7 +29,6 @@ const formOpts = formOptions<PropertyUserLogn>({
 export function SigninComponent({}: SigninComponentProps) {
   const [showPassword, setShowPassword] = useState(false);
   const qc = useQueryClient();
-  // const router = useRouter();
   const { returnTo } = Route.useSearch();
   const navigate = useNavigate({ from: "/auth" });
   const mutation = useMutation({
@@ -45,7 +44,7 @@ export function SigninComponent({}: SigninComponentProps) {
       });
       qc.invalidateQueries(viewerqueryOptions);
       // @ts-expect-error
-      navigate({to:returnTo || "/profile"});
+      navigate({ to: returnTo || "/profile" });
       if (typeof window !== "undefined") {
         location.reload();
       }

@@ -17,6 +17,9 @@ import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
+import { Route as AdminTenantsImport } from './routes/admin/tenants'
+import { Route as AdminShopsImport } from './routes/admin/shops'
+import { Route as AdminRentImport } from './routes/admin/rent'
 import { Route as AdminBillsImport } from './routes/admin/bills'
 
 // Create/Update Routes
@@ -51,6 +54,21 @@ const AuthSignupRoute = AuthSignupImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
+const AdminTenantsRoute = AdminTenantsImport.update({
+  path: '/admin/tenants',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminShopsRoute = AdminShopsImport.update({
+  path: '/admin/shops',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminRentRoute = AdminRentImport.update({
+  path: '/admin/rent',
+  getParentRoute: () => rootRoute,
+} as any)
+
 const AdminBillsRoute = AdminBillsImport.update({
   path: '/admin/bills',
   getParentRoute: () => rootRoute,
@@ -79,6 +97,27 @@ declare module '@tanstack/react-router' {
       path: '/admin/bills'
       fullPath: '/admin/bills'
       preLoaderRoute: typeof AdminBillsImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/rent': {
+      id: '/admin/rent'
+      path: '/admin/rent'
+      fullPath: '/admin/rent'
+      preLoaderRoute: typeof AdminRentImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/shops': {
+      id: '/admin/shops'
+      path: '/admin/shops'
+      fullPath: '/admin/shops'
+      preLoaderRoute: typeof AdminShopsImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/tenants': {
+      id: '/admin/tenants'
+      path: '/admin/tenants'
+      fullPath: '/admin/tenants'
+      preLoaderRoute: typeof AdminTenantsImport
       parentRoute: typeof rootRoute
     }
     '/auth/signup': {
@@ -117,6 +156,9 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   AdminBillsRoute,
+  AdminRentRoute,
+  AdminShopsRoute,
+  AdminTenantsRoute,
   AuthSignupRoute,
   AdminIndexRoute,
   AuthIndexRoute,
@@ -134,6 +176,9 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/_layout",
         "/admin/bills",
+        "/admin/rent",
+        "/admin/shops",
+        "/admin/tenants",
         "/auth/signup",
         "/admin/",
         "/auth/",
@@ -148,6 +193,15 @@ export const routeTree = rootRoute.addChildren({
     },
     "/admin/bills": {
       "filePath": "admin/bills.tsx"
+    },
+    "/admin/rent": {
+      "filePath": "admin/rent.tsx"
+    },
+    "/admin/shops": {
+      "filePath": "admin/shops.tsx"
+    },
+    "/admin/tenants": {
+      "filePath": "admin/tenants.tsx"
     },
     "/auth/signup": {
       "filePath": "auth/signup.tsx"
