@@ -9,7 +9,7 @@ Pocketbase setup
 
 - download pocketbase [instructions](https://pocketbase.io/docs/)
 - open settings>import collections and use this  [schema](src/lib/pb/schema.json)
-![alt text]([docs/import-pb.png](https://github.com/tigawanna/property-manager-tsr/blob/main/docs/import-pb.png))
+![alt text](docs/import-pb.png)
 
 remember to add envoroment varibles
 ```env
