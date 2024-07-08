@@ -1,13 +1,3 @@
-export type LiquorstoreProductsVariants= Array<{
-size:number;
-price:number;
-quantity:number;
-}>
-export type LiquorstoreProductsReviewVariants= Array<{
-size:number;
-price:number;
-quantity:number;
-}>
 
 /**
  * This file was @generated using typed-pocketbase
@@ -244,14 +234,17 @@ export interface PropertyBillsCollection {
 export interface PropertyTenantsListResponse extends BaseCollectionResponse {
 	collectionName: 'property_tenants_list';
 	name: string;
+	account: string;
 }
 
 export interface PropertyTenantsListCreate extends BaseCollectionCreate {
 	name?: string;
+	account?: string;
 }
 
 export interface PropertyTenantsListUpdate extends BaseCollectionUpdate {
 	name?: string;
+	account?: string;
 }
 
 export interface PropertyTenantsListCollection {
@@ -263,6 +256,7 @@ export interface PropertyTenantsListCollection {
 	update: PropertyTenantsListUpdate;
 	relations: {
 		'property_shops(tenant)': PropertyShopsCollection[];
+		account: PropertyUserCollection;
 		'property_user(tenant)': PropertyUserCollection[];
 	};
 }
@@ -279,6 +273,8 @@ export interface PropertyUserResponse extends AuthCollectionResponse {
 	avatarUrl: string;
 	staff: string;
 	tenant: string;
+	user: string;
+	verification_status: '' | 'initial' | 'pending' | 'resolved';
 }
 
 export interface PropertyUserCreate extends AuthCollectionCreate {
@@ -287,6 +283,8 @@ export interface PropertyUserCreate extends AuthCollectionCreate {
 	avatarUrl?: string | URL;
 	staff?: string;
 	tenant?: string;
+	user?: string;
+	verification_status?: '' | 'initial' | 'pending' | 'resolved';
 }
 
 export interface PropertyUserUpdate extends AuthCollectionUpdate {
@@ -295,6 +293,8 @@ export interface PropertyUserUpdate extends AuthCollectionUpdate {
 	avatarUrl?: string | URL;
 	staff?: string;
 	tenant?: string;
+	user?: string;
+	verification_status?: '' | 'initial' | 'pending' | 'resolved';
 }
 
 export interface PropertyUserCollection {
@@ -305,8 +305,12 @@ export interface PropertyUserCollection {
 	create: PropertyUserCreate;
 	update: PropertyUserUpdate;
 	relations: {
+		'property_tenants_list(account)': PropertyTenantsListCollection[];
 		staff: PropertyStaffListCollection;
 		tenant: PropertyTenantsListCollection;
+		user: PropertyUsersListCollection;
+		'property_staff_list(account)': PropertyStaffListCollection[];
+		'property_users_list(account)': PropertyUsersListCollection[];
 	};
 }
 
@@ -318,14 +322,17 @@ export interface PropertyUserCollection {
 export interface PropertyStaffListResponse extends BaseCollectionResponse {
 	collectionName: 'property_staff_list';
 	name: string;
+	account: string;
 }
 
 export interface PropertyStaffListCreate extends BaseCollectionCreate {
 	name?: string;
+	account: string;
 }
 
 export interface PropertyStaffListUpdate extends BaseCollectionUpdate {
 	name?: string;
+	account?: string;
 }
 
 export interface PropertyStaffListCollection {
@@ -337,10 +344,45 @@ export interface PropertyStaffListCollection {
 	update: PropertyStaffListUpdate;
 	relations: {
 		'property_user(staff)': PropertyUserCollection[];
+		account: PropertyUserCollection;
 	};
 }
 
 // ==== end of property_staff_list block =====
+
+// ==== start of property_users_list block =====
+
+
+export interface PropertyUsersListResponse extends BaseCollectionResponse {
+	collectionName: 'property_users_list';
+	name: string;
+	account: string;
+}
+
+export interface PropertyUsersListCreate extends BaseCollectionCreate {
+	name?: string;
+	account?: string;
+}
+
+export interface PropertyUsersListUpdate extends BaseCollectionUpdate {
+	name?: string;
+	account?: string;
+}
+
+export interface PropertyUsersListCollection {
+	type: 'base';
+	collectionId: string;
+	collectionName: 'property_users_list';
+	response: PropertyUsersListResponse;
+	create: PropertyUsersListCreate;
+	update: PropertyUsersListUpdate;
+	relations: {
+		'property_user(user)': PropertyUserCollection[];
+		account: PropertyUserCollection;
+	};
+}
+
+// ==== end of property_users_list block =====
 
 export type Schema = {
 	property_shops: PropertyShopsCollection;
@@ -348,4 +390,5 @@ export type Schema = {
 	property_tenants_list: PropertyTenantsListCollection;
 	property_user: PropertyUserCollection;
 	property_staff_list: PropertyStaffListCollection;
+	property_users_list: PropertyUsersListCollection;
 };

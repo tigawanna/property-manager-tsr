@@ -1,4 +1,4 @@
-import { redirect, useRouter } from "@tanstack/react-router";
+import { redirect, useNavigate, useRouter } from "@tanstack/react-router";
 import { Route } from "../index";
 import { formOptions, useForm } from "@tanstack/react-form";
 import { FormLabel } from "@/components/park/ui/form-label";
@@ -31,7 +31,7 @@ export function SigninComponent({}: SigninComponentProps) {
   const qc = useQueryClient();
   // const router = useRouter();
   const { returnTo } = Route.useSearch();
-
+  const navigate = useNavigate({ from: "/auth" });
   const mutation = useMutation({
     mutationFn: (data: PropertyUserLogn) => {
       return pb.from("property_user").authWithPassword(data.emailOrUsername, data.password);
@@ -44,6 +44,8 @@ export function SigninComponent({}: SigninComponentProps) {
         duration: 2000,
       });
       qc.invalidateQueries(viewerqueryOptions);
+      // @ts-expect-error
+      navigate({to:returnTo || "/profile"});
       if (typeof window !== "undefined") {
         location.reload();
       }

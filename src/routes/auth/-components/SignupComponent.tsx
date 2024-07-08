@@ -11,7 +11,7 @@ import { MutationButton } from "@/lib/tanstack/query/MutationButton";
 import { Checkbox } from "@/components/park/ui/checkbox";
 import { useState } from "react";
 import { viewerqueryOptions } from "@/lib/tanstack/query/use-viewer";
-
+import { useNavigate } from "@tanstack/react-router";
 
 interface SignupComponentProps {}
 
@@ -23,6 +23,7 @@ const formOpts = formOptions<PropertyUserCreate>({
     password: "",
     passwordConfirm: "",
     role: "user",
+    verification_status: "initial",
     pnone: "",
     avatarUrl: "",
   },
@@ -31,7 +32,7 @@ const formOpts = formOptions<PropertyUserCreate>({
 export function SignupComponent({}: SignupComponentProps) {
   const [showPassword, setShowPassword] = useState(false);
   const qc = useQueryClient();
-
+  const navigate = useNavigate({ from: "/auth/signup" });
   const mutation = useMutation({
     mutationFn: (data: PropertyUserCreate) => {
       return pb.from("property_user").create(data);
@@ -45,6 +46,7 @@ export function SignupComponent({}: SignupComponentProps) {
       });
       qc.invalidateQueries(viewerqueryOptions);
 
+      navigate({ to: "/profile" });
       if (typeof window !== "undefined") {
         location.reload();
       }
@@ -75,7 +77,7 @@ export function SignupComponent({}: SignupComponentProps) {
           form.handleSubmit();
         }}
         className="w-[90%] md:w-[60%] lg:w-[50%] h-full flex flex-col items-center justify-center p-[2%] bg-bg-muted rounded-md gap-3 ">
-        <h1 className="text-4xl">Signup</h1>
+        <h1 className="text-4xl">Sign up</h1>
         <form.Field
           name="username"
           validatorAdapter={zodValidator()}

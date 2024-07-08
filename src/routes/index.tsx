@@ -1,12 +1,14 @@
 import { toaster } from "@/components/navigation/ParkuiToast";
 import { Button } from "@/components/park/ui/button";
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute} from "@tanstack/react-router";
+import { useNavigate } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: IndexComponent,
 });
 
 function IndexComponent() {
+  const navigate = useNavigate({from:"/"});
   return (
     <div className="min-h-screen  flex flex-col items-center justify-center h-2">
       {/* <div className="bg-accent-default p-[5%]">
@@ -62,6 +64,11 @@ function IndexComponent() {
           Loading toast
         </Button>
       </div>
+      <button
+        onClick={() => {
+          navigate({ to: "/profile" })}}>
+        redirect to profile
+      </button>
     </div>
   );
 }
