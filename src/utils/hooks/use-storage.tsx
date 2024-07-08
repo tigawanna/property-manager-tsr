@@ -12,3 +12,15 @@ export function useSessionStorage<T>(key: string, initialValue: T) {
 
   return state
 }
+
+export function useLocalStorage<T>(key: string, initialValue: T) {
+  const state = React.useState<T>(() => {
+    const stored = localStorage.getItem(key)
+    return stored ? JSON.parse(stored) : initialValue
+  })
+
+  React.useEffect(() => {
+    localStorage.setItem(key, JSON.stringify(state[0]))
+  }, [state[0]])
+}      
+
