@@ -44,10 +44,10 @@ export function SigninComponent({}: SigninComponentProps) {
       });
       qc.invalidateQueries(viewerqueryOptions);
       // @ts-expect-error
-      navigate({ to: returnTo || "/profile" });
-      if (typeof window !== "undefined") {
-        location.reload();
-      }
+      navigate({ to: returnTo || "/" });
+      // if (typeof window !== "undefined") {
+      //   location.reload();
+      // }
     },
     onError(error) {
       console.log(error.name);

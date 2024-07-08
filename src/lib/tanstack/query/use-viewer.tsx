@@ -18,7 +18,7 @@ export const viewerqueryOptions = queryOptions({
       .authRefresh()
       .then((res) => res)
       .catch(() => {
-        pb.authStore.clear();
+        // pb.authStore.clear();
         return { record: null };
       }),
   staleTime: 1000 * 60 * 60,
