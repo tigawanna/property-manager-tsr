@@ -22,6 +22,12 @@ export function isBillingNewMonth(bill: MonthlyBills) {
 
   return "prev_curr";
 }
+export function currentMonthAndYear() {
+  return {
+    month: new Date().getMonth() + 1,
+    year: new Date().getFullYear(),
+  }
+}
 
 export function caclulatePeriod(month: number, year: number): BillsPeriod {
   return {
@@ -32,19 +38,11 @@ export function caclulatePeriod(month: number, year: number): BillsPeriod {
   };
 }
 
-// export function useBillsPeriodSearchParams() {
-//    const page_ctx = usePageContext()
-//    const month =
-//      page_ctx.url.searchParams.get("month") ?? (new Date().getMonth() + 1).toString();
-//    const year =
-//      page_ctx.url.searchParams.get("year") ?? new Date().getFullYear().toString();
-//    const period = caclulatePeriod(parseInt(month), parseInt(year))
-// }
+
 
 export function useBillsPeriod() {
-  const [,startTransition] = useTransition();
   const searchParams = useSearch({ from: "/admin/bills/" });
-  const navigate = useNavigate({from:"/admin/bills"});
+  const navigate = useNavigate({ from: "/admin/bills" });
 
   const search_params_curr_month = searchParams.cm;
   const search_params_curr_year = searchParams.cy;

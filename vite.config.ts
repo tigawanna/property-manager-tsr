@@ -9,7 +9,6 @@ export default defineConfig({
   plugins: [react(), TanStackRouterVite(), tsconfigPaths()],
   server: {
     port: 3000,
-    open: true,
     host: true,
   },
 });

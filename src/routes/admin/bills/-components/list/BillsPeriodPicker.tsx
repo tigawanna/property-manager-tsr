@@ -1,7 +1,8 @@
-import { Minus, Plus } from "lucide-react";
+import { Minus, Plus, Printer } from "lucide-react";
 import { BillsPeriod } from "../api/bills";
 import { IconButton } from "@/components/park/ui/icon-button";
 import { useTransition } from "react";
+import { Link } from "@tanstack/react-router";
 
 interface BillsPeriodPickerProps {
   period: BillsPeriod;
@@ -12,7 +13,7 @@ export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps)
   const [_, startTransition] = useTransition();
   const currentYear = new Date().getFullYear();
   return (
-    <div className="w-full h-full flex flex-col items-center justify-center p-1">
+    <div className="w-full  flex flex-col items-center justify-center p-1">
       <div className="w-full h-full flex flex-col md:flex-row md:gap-4 items-center justify-center">
         <div className=" flex justify-center items-center gap-1 border rounded-lg">
           <PlusMinusYear
@@ -28,6 +29,16 @@ export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps)
           />
         </div>
         <h1 className="md:text-3xl">bills</h1>
+        <Link
+          to="/admin/bills/print"
+          search={{
+            cm: period.curr_month,
+            cy: period.curr_year,
+            pm: period.prev_month,
+            py: period.prev_year,
+          }}>
+          <Printer />
+        </Link>
         <div className=" flex justify-center items-center gap-1 border rounded-lg">
           <PlusMinusYear
             value={period.prev_year}

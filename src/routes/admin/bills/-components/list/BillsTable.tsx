@@ -2,16 +2,19 @@ import * as Table from "~/components/park/ui/table";
 import { useBillsQuery } from "../api/use-bills";
 import { Edit } from "lucide-react";
 import { BillsPeriod } from "../api/bills";
+import { twMerge } from "tailwind-merge";
 interface MonthlyBillsTableProps {
   period: BillsPeriod;
   printing?: boolean;
+  tableClassname?:string;
 }
 
-export function MonthlyBillsTable({ period,printing }: MonthlyBillsTableProps) {
+export function MonthlyBillsTable({ period,printing,tableClassname }: MonthlyBillsTableProps) {
   const query = useBillsQuery(period);
   const data = query.data.result;
+
   return (
-    <div className="w-full h-screen  overflow-auto">
+    <div className={twMerge("w-full h-screen overflow-auto",tableClassname)}>
       <Table.Root className="" size="sm" variant="outline">
         <Table.Caption>
           Bills {period.curr_year}/{period.curr_month}
@@ -77,8 +80,8 @@ interface BillsTableSuspenseFallbac {
 export function BillsTableSuspenseFallback({ period }: BillsTableSuspenseFallbac) {
     const data = Array.from({ length: 12 });
   return (
-    <div className="w-full h-screen  overflow-auto">
-      <Table.Root className="" size="sm" variant="outline">
+    <div className="w-full h-screen overflow-auto">
+      <Table.Root className="w-full overflow-auto" size="sm" variant="outline">
         <Table.Caption>
           Bills {period.curr_year}/{period.curr_month}
         </Table.Caption>
@@ -101,7 +104,7 @@ export function BillsTableSuspenseFallback({ period }: BillsTableSuspenseFallbac
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {data?.map((item,idx) => {
+          {data?.map((_,idx) => {
             return (
               <Table.Row key={idx}>
                 {/* shop details */}
