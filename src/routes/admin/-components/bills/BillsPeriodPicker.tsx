@@ -1,14 +1,122 @@
+import { Minus, Plus } from "lucide-react";
 import { BillsPeriod } from "./api/bills";
+import { IconButton } from "@/components/park/ui/icon-button";
 
 interface BillsPeriodPickerProps {
   period: BillsPeriod;
   setPeriod: React.Dispatch<React.SetStateAction<BillsPeriod>>;
 }
 
-export function BillsPeriodPicker({}:BillsPeriodPickerProps){
-return (
- <div className='w-full h-full flex flex-col items-center justify-center'>
+export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps) {
+  const currentYear = new Date().getFullYear();
+  return (
+    <div className="w-full h-full flex flex-col items-center justify-center p-1">
+      <div className="w-full h-full flex gap-4 items-center justify-center">
+        <div className=" flex justify-center items-center gap-1 border rounded-lg">
+          <PlusMinusYear
+            value={period.curr_year}
+            setValue={(value) => setPeriod({ ...period, curr_year: value })}
+            maxYear={currentYear + 5}
+            minYear={period.prev_year}
+          />
+          /
+          <PlusMinusMonth
+            value={period.curr_month}
+            setValue={(value) => setPeriod({ ...period, curr_month: value })}
+          />
+        </div>
+        <h1 className="text-3xl">bills</h1>
+        <div className=" flex justify-center items-center gap-1 border rounded-lg">
+          <PlusMinusYear
+            value={period.prev_year}
+            setValue={(value) => setPeriod({ ...period, prev_year: value })}
+            maxYear={period.curr_year}
+            minYear={currentYear - 5}
+          />
+          /
+          <PlusMinusMonth
+            value={period.prev_month}
+            setValue={(value) => setPeriod({ ...period, prev_month: value })}
+          />
+        </div>
+      </div>
+    </div>
+  );
+}
 
- </div>
-);
+interface PlusMinusMonthProps {
+  value: number;
+
+  setValue: (value: number) => void;
+}
+
+export function PlusMinusMonth({ value, setValue }: PlusMinusMonthProps) {
+  return (
+    <div className="w-full flex flex-col items-center justify-center">
+      <div className="w-full flex gap-1 items-center justify-center">
+        <IconButton disabled={value === 12} variant="ghost">
+          <Plus
+            onClick={() => {
+              if (value > 0) {
+                setValue(value + 1);
+              }
+              if (value === 12) {
+                setValue(1);
+              }
+            }}
+          />
+        </IconButton>
+        {value}
+        <IconButton disabled={value === 1} variant="ghost">
+          <Minus
+            onClick={() => {
+              if (value > 1) {
+                setValue(value - 1);
+              }
+              value > 1;
+            }}
+          />
+        </IconButton>
+      </div>
+    </div>
+  );
+}
+interface PlusMinusYearProps {
+  value: number;
+
+  setValue: (value: number) => void;
+  minYear?: number;
+  maxYear?: number;
+}
+
+export function PlusMinusYear({ value, setValue, maxYear, minYear }: PlusMinusYearProps) {
+  return (
+    <div className="w-full flex flex-col gap-1 items-center justify-center">
+      <div className="w-full flex gap-1 items-center justify-center">
+        <IconButton disabled={value === maxYear} variant="ghost">
+          <Plus
+            onClick={() => {
+              if (value > 0) {
+                setValue(value + 1);
+              }
+              if (minYear && value === maxYear) {
+                setValue(minYear);
+              }
+            }}
+          />
+        </IconButton>
+        {value}
+        <IconButton disabled={value === minYear} variant="ghost">
+          <Minus
+            onClick={() => {
+              if (value > 1) {
+                setValue(value - 1);
+              }
+              value > 1;
+            }}
+          />
+        </IconButton>
+      </div>
+    </div>
+  );
 }
