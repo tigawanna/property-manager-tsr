@@ -2,11 +2,12 @@ import * as Table from "~/components/park/ui/table";
 import { useBillsQuery } from "../api/use-bills";
 import { Edit } from "lucide-react";
 import { BillsPeriod } from "../api/bills";
-interface BillsTableProps {
+interface MonthlyBillsTableProps {
   period: BillsPeriod;
+  printing?: boolean;
 }
 
-export function BillsTable({ period }: BillsTableProps) {
+export function MonthlyBillsTable({ period,printing }: MonthlyBillsTableProps) {
   const query = useBillsQuery(period);
   const data = query.data.result;
   return (
@@ -18,7 +19,7 @@ export function BillsTable({ period }: BillsTableProps) {
         <Table.Head className="sticky top-0 bg-bg-muted">
           <Table.Row>
             {/* shop details */}
-            <Table.Header>Order</Table.Header>
+            {!printing&&<Table.Header>Order</Table.Header>}
             <Table.Header>Shop No</Table.Header>
             <Table.Header>Shop Name</Table.Header>
             {/* previous */}
@@ -30,7 +31,7 @@ export function BillsTable({ period }: BillsTableProps) {
             <Table.Header>Prev Elec</Table.Header>
             <Table.Header>Diff</Table.Header>
             {/* update */}
-            <Table.Header>Actions</Table.Header>
+            {!printing&&<Table.Header>Actions</Table.Header>}
           </Table.Row>
         </Table.Head>
         <Table.Body>
@@ -38,7 +39,7 @@ export function BillsTable({ period }: BillsTableProps) {
             return (
               <Table.Row key={item.shop_id}>
                 {/* shop details */}
-                <Table.Cell>{item.list_order}</Table.Cell>
+                {!printing&&<Table.Cell>{item.list_order}</Table.Cell>}
                 <Table.Cell>{item.shop_number}</Table.Cell>
                 <Table.Cell>{item.shop_name}</Table.Cell>
 
@@ -51,9 +52,9 @@ export function BillsTable({ period }: BillsTableProps) {
                 <Table.Cell>{item.current_water}</Table.Cell>
                 <Table.Cell>{parseInt(item.water_diff).toFixed(2)}</Table.Cell>
                 {/* update */}
-                <Table.Cell>
+                {!printing&&<Table.Cell>
                   <Edit className="size-4" />
-                </Table.Cell>
+                </Table.Cell>}
               </Table.Row>
             );
           })}

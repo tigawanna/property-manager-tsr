@@ -1,5 +1,5 @@
 import { getPrevMonthandYear } from "@/utils/date-helpers";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useTransition } from "react";
 import { MonthlyBills, BillsPeriod } from "./bills";
 import { useSearch } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
@@ -42,7 +42,8 @@ export function caclulatePeriod(month: number, year: number): BillsPeriod {
 // }
 
 export function useBillsPeriod() {
-  const searchParams = useSearch({ from: "/admin/bills" });
+  const [,startTransition] = useTransition();
+  const searchParams = useSearch({ from: "/admin/bills/" });
   const navigate = useNavigate({from:"/admin/bills"});
 
   const search_params_curr_month = searchParams.cm;

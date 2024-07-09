@@ -1,6 +1,7 @@
 import { Minus, Plus } from "lucide-react";
 import { BillsPeriod } from "../api/bills";
 import { IconButton } from "@/components/park/ui/icon-button";
+import { useTransition } from "react";
 
 interface BillsPeriodPickerProps {
   period: BillsPeriod;
@@ -8,6 +9,7 @@ interface BillsPeriodPickerProps {
 }
 
 export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps) {
+  const [_, startTransition] = useTransition();
   const currentYear = new Date().getFullYear();
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-1">
@@ -15,28 +17,28 @@ export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps)
         <div className=" flex justify-center items-center gap-1 border rounded-lg">
           <PlusMinusYear
             value={period.curr_year}
-            setValue={(value) => setPeriod({ ...period, curr_year: value })}
+            setValue={(value) => startTransition(() => setPeriod({ ...period, curr_year: value }))}
             maxYear={currentYear + 5}
             minYear={period.prev_year}
           />
           /
           <PlusMinusMonth
             value={period.curr_month}
-            setValue={(value) => setPeriod({ ...period, curr_month: value })}
+            setValue={(value) => startTransition(() => setPeriod({ ...period, curr_month: value }))}
           />
         </div>
         <h1 className="md:text-3xl">bills</h1>
         <div className=" flex justify-center items-center gap-1 border rounded-lg">
           <PlusMinusYear
             value={period.prev_year}
-            setValue={(value) => setPeriod({ ...period, prev_year: value })}
+            setValue={(value) => startTransition(() => setPeriod({ ...period, prev_year: value }))}
             maxYear={period.curr_year}
             minYear={currentYear - 5}
           />
           /
           <PlusMinusMonth
             value={period.prev_month}
-            setValue={(value) => setPeriod({ ...period, prev_month: value })}
+            setValue={(value) => startTransition(() => setPeriod({ ...period, prev_month: value }))}
           />
         </div>
       </div>
