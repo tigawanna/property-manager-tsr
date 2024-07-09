@@ -1,5 +1,3 @@
-
-
 import { Suspense } from "react";
 import { useBillsPeriod } from "../api/use-bills-period";
 import { BillsPeriodPicker } from "./BillsPeriodPicker";
@@ -13,12 +11,12 @@ export function BillsContainer({}: BillsContainerProps) {
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <BillsPeriodPicker period={period} setPeriod={setPeriod} />
-
-      <Suspense fallback={<BillsTableSuspenseFallback period={period} />}>
+        <Suspense fallback={<BillsTableSuspenseFallback period={period} />}>
+        <div className="p-[2%] w-full">
         <BillsTable period={period} />
+
+        </div>
       </Suspense>
     </div>
   );
 }
-
-
