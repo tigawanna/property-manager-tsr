@@ -3,6 +3,7 @@ import { useBillsQuery } from "../api/use-bills";
 import { Edit } from "lucide-react";
 import { BillsPeriod } from "../api/bills";
 import { twMerge } from "tailwind-merge";
+import { MutateBill } from "../form/MutateBill";
 interface MonthlyBillsTableProps {
   period: BillsPeriod;
   printing?: boolean;
@@ -56,7 +57,8 @@ export function MonthlyBillsTable({ period,printing,tableClassname }: MonthlyBil
                 <Table.Cell>{parseInt(item.water_diff).toFixed(2)}</Table.Cell>
                 {/* update */}
                 {!printing&&<Table.Cell className="flex justify-center items-center">
-                  <Edit className="size-4" />
+             
+                  <MutateBill bill={item} />
                 </Table.Cell>}
               </Table.Row>
             );

@@ -1,10 +1,12 @@
 import { getPrevMonthandYear } from "@/utils/date-helpers";
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect} from "react";
 import { MonthlyBills, BillsPeriod } from "./bills";
 import { useSearch } from "@tanstack/react-router";
 import { useNavigate } from "@tanstack/react-router";
 
-export function isBillingNewMonth(bill: MonthlyBills) {
+
+export type BillStatus ="prev_curr"|"prev_no_curr"|"no_prev_no_curr"
+export function isBillingNewMonth(bill: MonthlyBills): BillStatus {
   if (bill.prev_bill_id === "blank" && bill.curr_bill_id === "blank") {
     return "no_prev_no_curr";
   }
@@ -22,6 +24,33 @@ export function isBillingNewMonth(bill: MonthlyBills) {
 
   return "prev_curr";
 }
+
+
+export interface BillsInput {
+  curr_elec: string;
+  curr_water: string;
+  prev_elec: string;
+  prev_water: string;
+}
+
+export function genInitValues(bill: MonthlyBills, is_new_bill: BillStatus) {
+  if (is_new_bill === "prev_no_curr" || is_new_bill === "no_prev_no_curr") {
+    return {
+      curr_elec: bill.previous_elec,
+      curr_water: bill.previous_water,
+      prev_elec: bill.previous_elec,
+      prev_water: bill.previous_water,
+    };
+  }
+  return {
+    curr_elec: bill.current_elec,
+    curr_water: bill.current_water,
+    prev_elec: bill.previous_elec,
+    prev_water: bill.previous_water,
+  };
+}
+
+
 export function currentMonthAndYear() {
   return {
     month: new Date().getMonth() + 1,
@@ -38,7 +67,9 @@ export function caclulatePeriod(month: number, year: number): BillsPeriod {
   };
 }
 
-
+export function getDefaultPeriod() {
+  return caclulatePeriod(currentMonthAndYear().month, currentMonthAndYear().year);
+}
 
 export function useBillsPeriod() {
   const searchParams = useSearch({ from: "/admin/bills/" });
