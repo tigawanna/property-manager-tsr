@@ -55,7 +55,7 @@ export function MonthlyBillsTable({ period,printing,tableClassname }: MonthlyBil
                 <Table.Cell>{item.current_water}</Table.Cell>
                 <Table.Cell>{parseInt(item.water_diff).toFixed(2)}</Table.Cell>
                 {/* update */}
-                {!printing&&<Table.Cell>
+                {!printing&&<Table.Cell className="flex justify-center items-center">
                   <Edit className="size-4" />
                 </Table.Cell>}
               </Table.Row>
