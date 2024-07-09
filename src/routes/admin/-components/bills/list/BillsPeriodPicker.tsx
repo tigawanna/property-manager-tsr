@@ -1,5 +1,5 @@
 import { Minus, Plus } from "lucide-react";
-import { BillsPeriod } from "./api/bills";
+import { BillsPeriod } from "../api/bills";
 import { IconButton } from "@/components/park/ui/icon-button";
 
 interface BillsPeriodPickerProps {
@@ -11,7 +11,7 @@ export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps)
   const currentYear = new Date().getFullYear();
   return (
     <div className="w-full h-full flex flex-col items-center justify-center p-1">
-      <div className="w-full h-full flex gap-4 items-center justify-center">
+      <div className="w-full h-full flex flex-col md:flex-row md:gap-4 items-center justify-center">
         <div className=" flex justify-center items-center gap-1 border rounded-lg">
           <PlusMinusYear
             value={period.curr_year}
@@ -25,7 +25,7 @@ export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps)
             setValue={(value) => setPeriod({ ...period, curr_month: value })}
           />
         </div>
-        <h1 className="text-3xl">bills</h1>
+        <h1 className="md:text-3xl">bills</h1>
         <div className=" flex justify-center items-center gap-1 border rounded-lg">
           <PlusMinusYear
             value={period.prev_year}
