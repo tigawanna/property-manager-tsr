@@ -55,7 +55,7 @@ export function BillsCaroussel({period}: BillsCarousselProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <IconButton variant="outline" className="hover:text-accent rounded-lg bg-accent-emphasized flex gap-2 px-1">
+        <IconButton variant="outline" className="hover:text-accent rounded-lg bg-accent-default flex gap-2 px-2">
           <Plus />
           carrousel form
         </IconButton>

@@ -17,9 +17,9 @@ import { Route as ProfileIndexImport } from './routes/profile/index'
 import { Route as AuthIndexImport } from './routes/auth/index'
 import { Route as AdminIndexImport } from './routes/admin/index'
 import { Route as AuthSignupImport } from './routes/auth/signup'
-import { Route as AdminTenantsImport } from './routes/admin/tenants'
-import { Route as AdminShopsImport } from './routes/admin/shops'
 import { Route as AdminRentImport } from './routes/admin/rent'
+import { Route as AdminTenantsIndexImport } from './routes/admin/tenants/index'
+import { Route as AdminShopsIndexImport } from './routes/admin/shops/index'
 import { Route as AdminBillsIndexImport } from './routes/admin/bills/index'
 import { Route as AdminBillsPrintImport } from './routes/admin/bills/print'
 
@@ -55,18 +55,18 @@ const AuthSignupRoute = AuthSignupImport.update({
   getParentRoute: () => rootRoute,
 } as any)
 
-const AdminTenantsRoute = AdminTenantsImport.update({
-  path: '/admin/tenants',
-  getParentRoute: () => rootRoute,
-} as any)
-
-const AdminShopsRoute = AdminShopsImport.update({
-  path: '/admin/shops',
-  getParentRoute: () => rootRoute,
-} as any)
-
 const AdminRentRoute = AdminRentImport.update({
   path: '/admin/rent',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminTenantsIndexRoute = AdminTenantsIndexImport.update({
+  path: '/admin/tenants/',
+  getParentRoute: () => rootRoute,
+} as any)
+
+const AdminShopsIndexRoute = AdminShopsIndexImport.update({
+  path: '/admin/shops/',
   getParentRoute: () => rootRoute,
 } as any)
 
@@ -103,20 +103,6 @@ declare module '@tanstack/react-router' {
       path: '/admin/rent'
       fullPath: '/admin/rent'
       preLoaderRoute: typeof AdminRentImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/shops': {
-      id: '/admin/shops'
-      path: '/admin/shops'
-      fullPath: '/admin/shops'
-      preLoaderRoute: typeof AdminShopsImport
-      parentRoute: typeof rootRoute
-    }
-    '/admin/tenants': {
-      id: '/admin/tenants'
-      path: '/admin/tenants'
-      fullPath: '/admin/tenants'
-      preLoaderRoute: typeof AdminTenantsImport
       parentRoute: typeof rootRoute
     }
     '/auth/signup': {
@@ -161,6 +147,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminBillsIndexImport
       parentRoute: typeof rootRoute
     }
+    '/admin/shops/': {
+      id: '/admin/shops/'
+      path: '/admin/shops'
+      fullPath: '/admin/shops'
+      preLoaderRoute: typeof AdminShopsIndexImport
+      parentRoute: typeof rootRoute
+    }
+    '/admin/tenants/': {
+      id: '/admin/tenants/'
+      path: '/admin/tenants'
+      fullPath: '/admin/tenants'
+      preLoaderRoute: typeof AdminTenantsIndexImport
+      parentRoute: typeof rootRoute
+    }
   }
 }
 
@@ -169,14 +169,14 @@ declare module '@tanstack/react-router' {
 export const routeTree = rootRoute.addChildren({
   IndexRoute,
   AdminRentRoute,
-  AdminShopsRoute,
-  AdminTenantsRoute,
   AuthSignupRoute,
   AdminIndexRoute,
   AuthIndexRoute,
   ProfileIndexRoute,
   AdminBillsPrintRoute,
   AdminBillsIndexRoute,
+  AdminShopsIndexRoute,
+  AdminTenantsIndexRoute,
 })
 
 /* prettier-ignore-end */
@@ -190,14 +190,14 @@ export const routeTree = rootRoute.addChildren({
         "/",
         "/_layout",
         "/admin/rent",
-        "/admin/shops",
-        "/admin/tenants",
         "/auth/signup",
         "/admin/",
         "/auth/",
         "/profile/",
         "/admin/bills/print",
-        "/admin/bills/"
+        "/admin/bills/",
+        "/admin/shops/",
+        "/admin/tenants/"
       ]
     },
     "/": {
@@ -208,12 +208,6 @@ export const routeTree = rootRoute.addChildren({
     },
     "/admin/rent": {
       "filePath": "admin/rent.tsx"
-    },
-    "/admin/shops": {
-      "filePath": "admin/shops.tsx"
-    },
-    "/admin/tenants": {
-      "filePath": "admin/tenants.tsx"
     },
     "/auth/signup": {
       "filePath": "auth/signup.tsx"
@@ -232,6 +226,12 @@ export const routeTree = rootRoute.addChildren({
     },
     "/admin/bills/": {
       "filePath": "admin/bills/index.tsx"
+    },
+    "/admin/shops/": {
+      "filePath": "admin/shops/index.tsx"
+    },
+    "/admin/tenants/": {
+      "filePath": "admin/tenants/index.tsx"
     }
   }
 }
