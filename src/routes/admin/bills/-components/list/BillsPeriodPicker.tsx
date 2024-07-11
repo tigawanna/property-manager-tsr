@@ -3,6 +3,7 @@ import { BillsPeriod } from "../api/bills";
 import { IconButton } from "@/components/park/ui/icon-button";
 import { useTransition } from "react";
 import { Link } from "@tanstack/react-router";
+import { BillsCaroussel } from "../form/BillsCaroussel";
 
 interface BillsPeriodPickerProps {
   period: BillsPeriod;
@@ -28,7 +29,9 @@ export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps)
             setValue={(value) => startTransition(() => setPeriod({ ...period, curr_month: value }))}
           />
         </div>
-        <h1 className="md:text-3xl">bills</h1>
+        <div className="flex gap-3 justify-center items-center">
+          <h1 className="md:text-3xl">bills</h1>
+          <BillsCaroussel period={period} />
         <Link
           to="/admin/bills/print"
           search={{
@@ -39,6 +42,8 @@ export function BillsPeriodPicker({ period, setPeriod }: BillsPeriodPickerProps)
           }}>
           <Printer />
         </Link>
+        </div>
+
         <div className=" flex justify-center items-center gap-1 border rounded-lg">
           <PlusMinusYear
             value={period.prev_year}

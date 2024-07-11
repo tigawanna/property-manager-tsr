@@ -4,6 +4,7 @@ import { Edit } from "lucide-react";
 import { BillsPeriod } from "../api/bills";
 import { twMerge } from "tailwind-merge";
 import { MutateBill } from "../form/MutateBill";
+
 interface MonthlyBillsTableProps {
   period: BillsPeriod;
   printing?: boolean;
@@ -83,6 +84,7 @@ export function BillsTableSuspenseFallback({ period }: BillsTableSuspenseFallbac
     const data = Array.from({ length: 12 });
   return (
     <div className="w-full h-screen overflow-auto">
+
       <Table.Root className="w-full overflow-auto" size="sm" variant="outline">
         <Table.Caption>
           Bills {period.curr_year}/{period.curr_month}
@@ -106,7 +108,7 @@ export function BillsTableSuspenseFallback({ period }: BillsTableSuspenseFallbac
           </Table.Row>
         </Table.Head>
         <Table.Body>
-          {data?.map((_,idx) => {
+          {data?.map((_, idx) => {
             return (
               <Table.Row key={idx}>
                 {/* shop details */}

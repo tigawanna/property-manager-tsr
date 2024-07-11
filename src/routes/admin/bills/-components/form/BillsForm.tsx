@@ -27,8 +27,7 @@ interface BillsFormProps {
 export function BillsForm({ bill, setOpen, next }: BillsFormProps) {
   const is_new_bill = isBillingNewMonth(bill);
   const { period } = useBillsPeriod();
-  const [initBill,] = useState<BillsInput>(genInitValues(bill, is_new_bill));
-
+  const [initBill] = useState<BillsInput>(genInitValues(bill, is_new_bill));
 
   const new_bill_mutation = useMutation({
     mutationFn: (input: PropertyBillsCreate) => {
@@ -45,16 +44,15 @@ export function BillsForm({ bill, setOpen, next }: BillsFormProps) {
       toaster.create({
         title: "Something went wrong",
         description: `${error.message}`,
+        placement: "bottom-end",
       });
     },
     onSuccess() {
-      // setInput({
-      //   curr_elec: bill.current_elec,
-      //   curr_water: bill.current_water,
-      //   prev_elec: bill.previous_elec,
-      //   prev_water: bill.previous_water,
-      // });
-
+      toaster.create({
+        title: "success",
+        type: "success",
+        placement: "bottom-end",
+      });
       next?.();
       setOpen(false);
     },
@@ -75,15 +73,15 @@ export function BillsForm({ bill, setOpen, next }: BillsFormProps) {
       toaster.create({
         title: "Something went wrong",
         description: `${error.message}`,
+        placement: "bottom-end",
       });
     },
     onSuccess() {
-      // setInput({
-      //   curr_elec: bill.current_elec,
-      //   curr_water: bill.current_water,
-      //   prev_elec: bill.previous_elec,
-      //   prev_water: bill.previous_water,
-      // });
+      toaster.create({
+        title: "success",
+        type: "success",
+        placement: "bottom-end",
+      });
       next?.();
       setOpen(false);
     },
@@ -135,6 +133,7 @@ export function BillsForm({ bill, setOpen, next }: BillsFormProps) {
       await handleSubmit(value);
     },
   });
+
   return (
     <div className="w-full h-full flex flex-col items-center justify-center">
       <form
@@ -145,68 +144,13 @@ export function BillsForm({ bill, setOpen, next }: BillsFormProps) {
         }}
         className="w-full flex flex-wrap justify-center items-center gap-8">
         <div className="w-full flex flex-wrap items-center justify-center gap-5">
-          <div className="min-w-[40%] flex flex-col justify-center items-center gap-3">
-            <form.Field
-              name="prev_elec"
-              validatorAdapter={zodValidator()}
-              validators={{
-                onChange: z.number(),
-              }}
-              children={(field) => {
-                return (
-                  <TextFormField<BillsInput>
-                    field={field}
-                    fieldKey="prev_elec"
-                    fieldlabel="previous elec"
-                    inputOptions={{
-                      onBlur: field.handleBlur,
-                      type: "number",
-                      onChange: (e) => field.handleChange(e.target.value),
-                    }}
-                  />
-                );
-              }}
-            />
-            <form.Field
-              name="curr_elec"
-              validatorAdapter={zodValidator()}
-              validators={{
-                onChange: z.number(),
-              }}
-              children={(field) => {
-                return (
-                  <TextFormField<BillsInput>
-                    field={field}
-                    fieldKey="curr_elec"
-                    fieldlabel="current elec"
-                    inputOptions={{
-                      onBlur: field.handleBlur,
-                      type: "number",
-                      onChange: (e) => field.handleChange(e.target.value),
-                    }}
-                  />
-                );
-              }}
-            />
-
-            <div className="flex gap-3 text-base w-full justify-start">
-              {" "}
-              diff:{" "}
-              <div className="text-accent w-full">
-                {(
-                  parseFloat(form.getFieldValue("curr_elec")) -
-                  parseFloat(form.getFieldValue("prev_elec"))
-                ).toFixed(2)}
-              </div>
-            </div>
-          </div>
-
+          {/* water */}
           <div className="min-w-[40%] flex flex-col  justify-center items-center gap-3">
             <form.Field
               name="prev_water"
               validatorAdapter={zodValidator()}
               validators={{
-                onChange: z.number(),
+                onChange: z.string(),
               }}
               children={(field) => {
                 return (
@@ -227,7 +171,7 @@ export function BillsForm({ bill, setOpen, next }: BillsFormProps) {
               name="curr_water"
               validatorAdapter={zodValidator()}
               validators={{
-                onChange: z.number(),
+                onChange: z.string(),
               }}
               children={(field) => {
                 return (
@@ -244,16 +188,67 @@ export function BillsForm({ bill, setOpen, next }: BillsFormProps) {
                 );
               }}
             />
-            <div className="flex gap-3 text-base w-full justify-start">
-              {" "}
-              diff:{" "}
-              <div className="text-accent w-full">
-                {(
-                  parseFloat(form.getFieldValue("curr_water")) -
-                  parseFloat(form.getFieldValue("prev_water"))
-                ).toFixed(2)}
-              </div>
-            </div>
+            <form.Subscribe
+              selector={(state) => [state.values.curr_water, state.values.prev_water]}
+              children={([curr, prev]) => {
+                const diff = parseFloat(curr) - parseFloat(prev);
+                const textColorClassName = diff < 0 ? "text-error" : diff > 0 ? "text-success" : "";
+                return <div className={textColorClassName}> diff: {diff.toFixed(2)}</div>;
+              }}
+            />
+          </div>
+          {/*  elec */}
+          <div className="min-w-[40%] flex flex-col justify-center items-center gap-3">
+            <form.Field
+              name="prev_elec"
+              validatorAdapter={zodValidator()}
+              validators={{
+                onChange: z.string(),
+              }}
+              children={(field) => {
+                return (
+                  <TextFormField<BillsInput>
+                    field={field}
+                    fieldKey="prev_elec"
+                    fieldlabel="previous elec"
+                    inputOptions={{
+                      onBlur: field.handleBlur,
+                      type: "number",
+                      onChange: (e) => field.handleChange(e.target.value),
+                    }}
+                  />
+                );
+              }}
+            />
+            <form.Field
+              name="curr_elec"
+              validatorAdapter={zodValidator()}
+              validators={{
+                onChange: z.string(),
+              }}
+              children={(field) => {
+                return (
+                  <TextFormField<BillsInput>
+                    field={field}
+                    fieldKey="curr_elec"
+                    fieldlabel="current elec"
+                    inputOptions={{
+                      onBlur: field.handleBlur,
+                      type: "number",
+                      onChange: (e) => field.handleChange(e.target.value),
+                    }}
+                  />
+                );
+              }}
+            />
+            <form.Subscribe
+              selector={(state) => [state.values.curr_elec, state.values.prev_elec]}
+              children={([curr, prev]) => {
+                const diff = parseFloat(curr) - parseFloat(prev);
+                const textColorClassName = diff < 0 ? "text-error" : diff > 0 ? "text-success" : "";
+                return <div className={textColorClassName}> diff: {diff.toFixed(2)}</div>;
+              }}
+            />
           </div>
         </div>
 

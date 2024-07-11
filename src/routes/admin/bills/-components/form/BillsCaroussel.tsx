@@ -1,15 +1,19 @@
 import { ChevronLeft, ChevronRight, Plus, X } from "lucide-react";
 import { useState } from "react";
 import { BillsForm } from "./BillsForm";
-import { MonthlyBills } from "../api/bills";
+import { BillsPeriod, MonthlyBills } from "../api/bills";
 import * as Dialog from "~/components/park/ui/dialog";
 import { useNavigate, useSearch } from "@tanstack/react-router";
+import { useBillsQuery } from "../api/use-bills";
+import { IconButton } from "@/components/park/ui/icon-button";
 
 interface BillsCarousselProps {
-  bills: MonthlyBills[];
+  period:BillsPeriod
 }
 
-export function BillsCaroussel({ bills }: BillsCarousselProps) {
+export function BillsCaroussel({period}: BillsCarousselProps) {
+  const query = useBillsQuery(period);
+  const bills = query.data.result;
   const searchParams = useSearch({
     from: "/admin/bills/",
   });
@@ -51,15 +55,15 @@ export function BillsCaroussel({ bills }: BillsCarousselProps) {
   return (
     <Dialog.Root>
       <Dialog.Trigger asChild>
-        <button className="hover:text-accent flex gap-2 btn btn-sm text-lg">
+        <IconButton variant="outline" className="hover:text-accent rounded-lg bg-accent-emphasized flex gap-2 px-1">
           <Plus />
           carrousel form
-        </button>
+        </IconButton>
       </Dialog.Trigger>
-         <Dialog.Backdrop />
+      <Dialog.Backdrop />
       <Dialog.Positioner>
         <Dialog.Content
-          className="min-w-[60%] min-h-[70vh]"
+          className="min-w-[60%] min-h-[70vh] bg-bg-emphasized p-5"
           onKeyDown={(e) => {
             if (e.ctrlKey && e.key === "ArrowRight") {
               nextBill();
@@ -81,7 +85,6 @@ export function BillsCaroussel({ bills }: BillsCarousselProps) {
                   </div>
                 </div>
               </Dialog.Title>
-           
 
               <div className="h-full flex justify-center items-center">
                 <button
