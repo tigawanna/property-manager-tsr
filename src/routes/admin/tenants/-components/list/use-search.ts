@@ -20,7 +20,7 @@ export function useTenantsSearchQuery(
   const [keyword, setKeyword] = useState(sq ?? opts.default_value ?? "");
   const { debouncedValue, isDebouncing } = useDebouncedValue(keyword, 2000);
   useEffect(() => {
-    if (debouncedValue && sq!==debouncedValue) {
+    if (sq!==debouncedValue) {
       startTransition(() => {
         navigate({
           search: {

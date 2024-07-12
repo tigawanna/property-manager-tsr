@@ -1,5 +1,8 @@
 import { SearchBox } from "@/components/search/SearchBox";
 import { useTenantsSearchQuery } from "./list/use-search";
+import { Suspense } from "react";
+import { CardsListSuspenseFallback } from "@/components/loaders/GenericDataCardsListSuspenseFallback";
+import { TenantsList } from "./list/TenantsList";
 
 interface TenantsPageProps {
 
@@ -24,7 +27,9 @@ return (
       />
     </div>
     <div className="w-full h-full flex justify-center items-center m-3 p-5">
-      {isDebouncing && <div className="">IS DEBOUNCING</div>}
+        <Suspense fallback={<CardsListSuspenseFallback/>}>
+          <TenantsList keyword={debouncedValue}/>
+        </Suspense>
     </div>
   </div>
 );
