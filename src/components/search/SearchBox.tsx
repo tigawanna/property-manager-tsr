@@ -12,7 +12,6 @@ interface SearchBoxProps {
 }
 
 export function SearchBox({
-  debouncedValue,
   isDebouncing,
   setKeyword,
   keyword,
@@ -30,9 +29,7 @@ export function SearchBox({
           value={keyword}
           onChange={(e) => {
             startTransition(() => {
-              setKeyword((prev) => {
-                return e.target.value;
-              });
+              setKeyword(e.target.value);
             });
           }}
           {...inputProps}
